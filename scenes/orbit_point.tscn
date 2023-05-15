@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://yhkyyy3yi024"]
+
+[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="1_d5g1h"]
+[ext_resource type="Script" path="res://scenes/orbit_point.gd" id="2_jmloy"]
+
+[sub_resource type="Environment" id="Environment_i5ukr"]
+background_mode = 1
+
+[node name="OrbitPoint" type="Node3D"]
+
+[node name="TrackballCamera" type="Camera3D" parent="."]
+transform = Transform3D(0.986239, 0.0652841, -0.151887, -0.143174, 0.796642, -0.58725, 0.0826615, 0.600916, 0.795027, 0, 2.56399, 5.08716)
+environment = SubResource("Environment_i5ukr")
+script = ExtResource("1_d5g1h")
+mouse_strength = 0.6
+zoom_strength = 0.75
+zoom_minimum = 0.75
+zoom_maximum = 15.0
+friction = 0.1003
+
+[node name="LookAtParent" type="Node" parent="TrackballCamera"]
+script = ExtResource("2_jmloy")
