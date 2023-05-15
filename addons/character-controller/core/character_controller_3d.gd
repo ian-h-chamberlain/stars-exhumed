@@ -345,9 +345,9 @@ func _direction_input(input : Vector2, input_down : bool, input_up : bool, aim_n
 	# NOTE: For free-flying and swimming movements
 	if is_fly_mode() or is_floating():
 		if input_up:
-			_direction.y += 1.0
+			_direction += aim.y
 		elif input_down:
-			_direction.y -= 1.0
+			_direction -= aim.y
 	else:
 		_direction.y = 0	
 	return _direction.normalized()
