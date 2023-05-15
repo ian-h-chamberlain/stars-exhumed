@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Wild-jam-57"
+run/main_scene="res://levels/starfield.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/goutte.camera.trackball/plugin.cfg")
 
 [rendering]
 

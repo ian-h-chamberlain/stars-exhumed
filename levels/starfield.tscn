@@ -1,3 +1,59 @@
-[gd_scene format=3 uid="uid://bx3vppsfdhgbm"]
+[gd_scene load_steps=5 format=3 uid="uid://chpj5jjagqpfs"]
+
+[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_hojim"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fbc26"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wem7"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="Environment" id="Environment_i5ukr"]
+background_mode = 1
 
 [node name="starfield" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="TrackballCamera" type="Camera3D" parent="MeshInstance3D"]
+transform = Transform3D(10, 0, 0, 0, 9.34155, 3.56868, 0, -3.56868, 9.34155, 0, 9.83283, 21.6333)
+environment = SubResource("Environment_i5ukr")
+script = ExtResource("2_hojim")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.347173, 0, 0)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.347173, 0.397169, 0)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0363804, 0.397169, 0)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, 0.397169, -0.406054)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, -0.406054)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, 0.397169, 0.347666)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, 0.347666)
+mesh = SubResource("SphereMesh_fbc26")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
