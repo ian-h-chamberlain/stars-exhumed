@@ -13,3 +13,8 @@ export_presets.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+
+# We don't want to check in some examples but they are useful to keep around
+# for experimenting with 3rd party assets
+addons/**/example/
