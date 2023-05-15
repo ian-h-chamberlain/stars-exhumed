@@ -10,6 +10,8 @@ emission = Color(1, 1, 1, 1)
 
 [node name="starfield" type="Node3D"]
 
+[node name="OrbitPoint" parent="." instance=ExtResource("1_p4g0v")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = SubResource("SphereMesh_fbc26")
@@ -49,5 +51,3 @@ surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, 0.347666)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
-
-[node name="OrbitPoint" parent="." instance=ExtResource("1_p4g0v")]

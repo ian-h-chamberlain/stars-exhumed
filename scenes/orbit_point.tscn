@@ -1,22 +1,36 @@
-[gd_scene load_steps=4 format=3 uid="uid://yhkyyy3yi024"]
+[gd_scene load_steps=5 format=3 uid="uid://yhkyyy3yi024"]
 
 [ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="1_d5g1h"]
 [ext_resource type="Script" path="res://scenes/orbit_point.gd" id="2_jmloy"]
+[ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="3_6ida4"]
 
-[sub_resource type="Environment" id="Environment_i5ukr"]
+[sub_resource type="Environment" id="Environment_jiov4"]
 background_mode = 1
 
-[node name="OrbitPoint" type="Node3D"]
+[node name="OrbitPoint" instance=ExtResource("3_6ida4")]
+input_ray_pickable = false
+motion_mode = 1
+script = ExtResource("2_jmloy")
+input_back_action_name = "move_backward"
+input_forward_action_name = "move_forward"
+input_left_action_name = "move_left"
+input_right_action_name = "move_right"
+input_sprint_action_name = "move_sprint"
+input_up_action_name = "move_up"
+input_down_action_name = "move_down"
+gravity_multiplier = 0.0
+speed = 3
+abilities_path = Array[NodePath]([NodePath("Fly Ability 3D")])
 
-[node name="TrackballCamera" type="Camera3D" parent="."]
-transform = Transform3D(0.986239, 0.0652841, -0.151887, -0.143174, 0.796642, -0.58725, 0.0826615, 0.600916, 0.795027, 0, 2.56399, 5.08716)
-environment = SubResource("Environment_i5ukr")
+[node name="Fly Ability 3D" parent="." index="6"]
+_active = true
+
+[node name="TrackballCamera" type="Camera3D" parent="." index="8"]
+transform = Transform3D(0.986239, 0.0652841, -0.151887, -0.0312137, 0.975736, 0.216713, 0.16235, -0.20899, 0.964347, 0, 2.56399, 5.08716)
+environment = SubResource("Environment_jiov4")
 script = ExtResource("1_d5g1h")
 mouse_strength = 0.6
 zoom_strength = 0.75
 zoom_minimum = 0.75
 zoom_maximum = 15.0
 friction = 0.1003
-
-[node name="LookAtParent" type="Node" parent="TrackballCamera"]
-script = ExtResource("2_jmloy")
