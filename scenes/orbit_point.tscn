@@ -26,7 +26,7 @@ abilities_path = Array[NodePath]([NodePath("Fly Ability 3D")])
 _active = true
 
 [node name="TrackballCamera" type="Camera3D" parent="." index="8"]
-transform = Transform3D(0.986239, 0.0652841, -0.151887, -0.0312137, 0.975736, 0.216713, 0.16235, -0.20899, 0.964347, 0, 2.56399, 5.08716)
+transform = Transform3D(0.986239, 0.0652842, -0.151887, -0.0312137, 0.975736, 0.216713, 0.16235, -0.20899, 0.964347, 0, 2.56399, 6.95409)
 environment = SubResource("Environment_jiov4")
 script = ExtResource("1_d5g1h")
 mouse_strength = 0.6
