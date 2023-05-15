@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bx3vppsfdhgbm"]
+
+[node name="starfield" type="Node3D"]
