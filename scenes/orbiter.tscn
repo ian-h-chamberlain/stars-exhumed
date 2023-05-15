@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://c46l2018iva08"]
+
+[ext_resource type="Script" path="res://scenes/orbiter.gd" id="1_swk4w"]
+[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_62sfi"]
+[ext_resource type="Script" path="res://scenes/orbit_controller.gd" id="4_5gljf"]
+[ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="4_k363m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h7pt"]
+radius = 0.25
+height = 0.5
+
+[node name="Orbiter" type="Node3D"]
+script = ExtResource("1_swk4w")
+
+[node name="OrbitCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71609, 2.24646, 5.3364)
+script = ExtResource("2_62sfi")
+
+[node name="OrbitController" parent="." instance=ExtResource("4_k363m")]
+motion_mode = 1
+script = ExtResource("4_5gljf")
+input_back_action_name = "move_backward"
+input_forward_action_name = "move_forward"
+input_left_action_name = "move_left"
+input_right_action_name = "move_right"
+input_up_action_name = "move_up"
+input_down_action_name = "move_down"
+gravity_multiplier = 0.0
+speed = 3
+abilities_path = Array[NodePath]([NodePath("Fly Ability 3D")])
+
+[node name="Collision" parent="OrbitController" index="0"]
+shape = SubResource("CapsuleShape3D_3h7pt")
+
+[node name="Fly Ability 3D" parent="OrbitController" index="6"]
+_active = true
+
+[editable path="OrbitController"]

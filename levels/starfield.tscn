@@ -1,17 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://chpj5jjagqpfs"]
+[gd_scene load_steps=9 format=3 uid="uid://d06dsjqf1atoc"]
 
-[ext_resource type="PackedScene" uid="uid://yhkyyy3yi024" path="res://scenes/orbit_point.tscn" id="1_p4g0v"]
+[ext_resource type="PackedScene" uid="uid://c46l2018iva08" path="res://scenes/orbiter.tscn" id="1_4sixa"]
+[ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
 [ext_resource type="Texture2D" uid="uid://e251ad0he7e2" path="res://assets/textures/skybox/panorama_8192x4096.png" id="2_pqdv1"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_psg12"]
-panorama = ExtResource("2_pqdv1")
-
-[sub_resource type="Sky" id="Sky_fur3u"]
-sky_material = SubResource("PanoramaSkyMaterial_psg12")
-
-[sub_resource type="Environment" id="Environment_0y6i3"]
-background_mode = 2
-sky = SubResource("Sky_fur3u")
 
 [sub_resource type="SphereMesh" id="SphereMesh_fbc26"]
 
@@ -19,12 +10,18 @@ sky = SubResource("Sky_fur3u")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bpo7r"]
+panorama = ExtResource("2_pqdv1")
+
+[sub_resource type="Sky" id="Sky_soxst"]
+sky_material = SubResource("PanoramaSkyMaterial_bpo7r")
+
+[sub_resource type="Environment" id="Environment_5y2he"]
+background_mode = 2
+sky = SubResource("Sky_soxst")
+
 [node name="starfield" type="Node3D"]
-
-[node name="OrbitPoint" parent="." instance=ExtResource("1_p4g0v")]
-
-[node name="TrackballCamera" parent="OrbitPoint" index="8"]
-environment = SubResource("Environment_0y6i3")
+script = ExtResource("1_602wj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
@@ -66,4 +63,10 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, 0.
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
 
-[editable path="OrbitPoint"]
+[node name="OrbitController" parent="." instance=ExtResource("1_4sixa")]
+
+[node name="OrbitCamera" parent="OrbitController" index="0"]
+environment = SubResource("Environment_5y2he")
+
+[editable path="OrbitController"]
+[editable path="OrbitController/OrbitController"]

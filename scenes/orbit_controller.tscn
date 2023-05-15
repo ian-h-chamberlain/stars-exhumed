@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://n7d2lvexyv67"]
+
+[ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="1_fswnp"]
+[ext_resource type="Script" path="res://scenes/orbit_controller.gd" id="2_ws850"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nc8re"]
+height = 1.0
+
+[node name="OrbitController" instance=ExtResource("1_fswnp")]
+motion_mode = 1
+script = ExtResource("2_ws850")
+input_back_action_name = "move_backward"
+input_forward_action_name = "move_forward"
+input_left_action_name = "move_left"
+input_right_action_name = "move_right"
+input_up_action_name = "move_up"
+input_down_action_name = "move_down"
+gravity_multiplier = 0.0
+speed = 3
+abilities_path = Array[NodePath]([NodePath("Fly Ability 3D")])
+
+[node name="Collision" parent="." index="0"]
+shape = SubResource("CapsuleShape3D_nc8re")
+
+[node name="Fly Ability 3D" parent="." index="6"]
+_active = true
