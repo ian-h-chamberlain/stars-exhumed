@@ -35,3 +35,7 @@ func _physics_process(delta):
 	var input_swim_up = Input.is_action_pressed(input_up_action_name)
 
 	move(delta, input_axis, input_jump, input_crouch, input_sprint, input_swim_down, input_swim_up)
+
+
+func _process(_delta):
+	DebugDraw.draw_gizmo(global_transform)
