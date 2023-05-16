@@ -30,7 +30,8 @@ func _ready():
 		_stars.push_back(new_star)
 		add_child(new_star)
 
-	_stars[0].get_node("Highlight").visible = true
+	_stars[0].get_node("Highlight").state = Highlight.State.SELECTED
+	_stars[1].get_node("Highlight").state = Highlight.State.HOVERED
 
 
 func _generate_star_position() -> Vector3:

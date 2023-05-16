@@ -23,6 +23,6 @@ script = ExtResource("1_wkd86")
 shape = SubResource("SphereShape3D_chfhs")
 
 [node name="Highlight" type="Node2D" parent="."]
-visible = false
 script = ExtResource("1_8ynj5")
-color = Color(0.568627, 0.960784, 0.533333, 1)
+selected_color = Color(0.694118, 0.917647, 0.541176, 1)
+hover_color = Color(0.607843, 0.737255, 1, 1)
