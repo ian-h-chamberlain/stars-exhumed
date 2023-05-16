@@ -24,10 +24,5 @@ func _draw():
 
 
 func _process(_delta):
-	var world_pos = get_parent().global_position
-
-	# display the clickable area
-	DebugDraw.draw_sphere(world_pos, 0.5, Color.BLUE)
-
-	if not camera.is_position_behind(world_pos):
+	if not camera.is_position_behind(get_parent().global_position):
 		queue_redraw()

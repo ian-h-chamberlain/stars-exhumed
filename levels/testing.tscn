@@ -1,16 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://datqocmtbir74"]
+[gd_scene load_steps=3 format=3 uid="uid://datqocmtbir74"]
 
+[ext_resource type="Script" path="res://scenes/starfield_generator/starfield_generator.gd" id="1_bxs8o"]
 [ext_resource type="PackedScene" uid="uid://dc4mx0xyrry8e" path="res://scenes/star/star.tscn" id="1_xjroy"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Star" parent="." instance=ExtResource("1_xjroy")]
-
-[node name="Highlight" parent="Star" index="1"]
-radius = 21.298
-width = -1.0
-
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.953, 0.302969, 0, -0.302969, 0.953, 0, 0.740378, 2.28824)
+transform = Transform3D(1, 0, 0, 0, 0.953, 0.302969, 0, -0.302969, 0.953, 0, 13.5208, 28.3416)
 
-[editable path="Star"]
+[node name="StarfieldGenerator" type="Node3D" parent="."]
+script = ExtResource("1_bxs8o")
+max_radius = 30.0
+min_distance = 3.0
+star = ExtResource("1_xjroy")

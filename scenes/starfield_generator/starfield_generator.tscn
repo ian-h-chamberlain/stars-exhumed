@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmvoghci4lp1i"]
+
+[ext_resource type="Script" path="res://scenes/starfield_generator/starfield_generator.gd" id="1_ax6eg"]
+[ext_resource type="PackedScene" uid="uid://dc4mx0xyrry8e" path="res://scenes/star/star.tscn" id="2_3dwo3"]
+
+[node name="StarfieldGenerator" type="Node3D"]
+script = ExtResource("1_ax6eg")
+star = ExtResource("2_3dwo3")
