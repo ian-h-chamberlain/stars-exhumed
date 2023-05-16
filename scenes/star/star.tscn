@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://dc4mx0xyrry8e"]
+
+[ext_resource type="Script" path="res://scenes/star/highlight.gd" id="1_8ynj5"]
+[ext_resource type="Script" path="res://scenes/star/star.gd" id="1_wkd86"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_xcans"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3wem7"]
+emission_enabled = true
+emission = Color(1, 0.984314, 0.709804, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_chfhs"]
+
+[node name="Star" type="MeshInstance3D"]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, 0, 0, 0)
+mesh = SubResource("SphereMesh_xcans")
+surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("1_wkd86")
+
+[node name="StaticBody" type="StaticBody3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="StaticBody"]
+shape = SubResource("SphereShape3D_chfhs")
+
+[node name="Highlight" type="Node2D" parent="."]
+script = ExtResource("1_8ynj5")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d06dsjqf1atoc"]
+[gd_scene load_steps=11 format=3 uid="uid://y42f8gi32pm5"]
 
-[ext_resource type="PackedScene" uid="uid://c46l2018iva08" path="res://scenes/orbiter.tscn" id="1_4sixa"]
+[ext_resource type="PackedScene" uid="uid://beqqvynfgur8j" path="res://scenes/orbit/orbiter.tscn" id="1_4sixa"]
 [ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
+[ext_resource type="PackedScene" uid="uid://dc4mx0xyrry8e" path="res://scenes/star/star.tscn" id="2_7u20b"]
 [ext_resource type="Texture2D" uid="uid://e251ad0he7e2" path="res://assets/textures/skybox/panorama_8192x4096.png" id="2_pqdv1"]
+[ext_resource type="Script" path="res://scenes/star/star.gd" id="3_yru50"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_fbc26"]
 
@@ -23,45 +25,49 @@ sky = SubResource("Sky_soxst")
 [node name="starfield" type="Node3D"]
 script = ExtResource("1_602wj")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-mesh = SubResource("SphereMesh_fbc26")
-surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+[node name="Star" parent="." instance=ExtResource("2_7u20b")]
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="Star2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.347173, 0, 0)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+[node name="Star3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.347173, 0.397169, 0)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+[node name="Star4" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0363804, 0.397169, 0)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+[node name="Star5" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, 0.397169, -0.406054)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+[node name="Star6" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, -0.406054)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+[node name="Star7" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, 0.397169, 0.347666)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+[node name="Star8" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.130095, -0.114713, 0.347666)
 mesh = SubResource("SphereMesh_fbc26")
 surface_material_override/0 = SubResource("StandardMaterial3D_3wem7")
+script = ExtResource("3_yru50")
 
 [node name="OrbitController" parent="." instance=ExtResource("1_4sixa")]
 

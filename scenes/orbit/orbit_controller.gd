@@ -31,4 +31,4 @@ func _physics_process(delta):
 
 func _process(_delta):
 	if OS.is_debug_build():
-		DebugDraw.draw_sphere(global_position)
+		DebugDraw.draw_sphere(global_position, 0.5, Color.GREEN)

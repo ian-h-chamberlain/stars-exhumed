@@ -1,24 +1,24 @@
-[gd_scene load_steps=6 format=3 uid="uid://c46l2018iva08"]
+[gd_scene load_steps=6 format=3 uid="uid://beqqvynfgur8j"]
 
-[ext_resource type="Script" path="res://scenes/orbiter.gd" id="1_swk4w"]
-[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_62sfi"]
-[ext_resource type="Script" path="res://scenes/orbit_controller.gd" id="4_5gljf"]
-[ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="4_k363m"]
+[ext_resource type="Script" path="res://scenes/orbit/orbiter.gd" id="1_r5ck1"]
+[ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_keeoy"]
+[ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="3_bkywg"]
+[ext_resource type="Script" path="res://scenes/orbit/orbit_controller.gd" id="4_7k74i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h7pt"]
 radius = 0.25
 height = 0.5
 
 [node name="Orbiter" type="Node3D"]
-script = ExtResource("1_swk4w")
+script = ExtResource("1_r5ck1")
 
 [node name="OrbitCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71609, 2.24646, 5.3364)
-script = ExtResource("2_62sfi")
+script = ExtResource("2_keeoy")
 
-[node name="OrbitController" parent="." instance=ExtResource("4_k363m")]
+[node name="OrbitController" parent="." instance=ExtResource("3_bkywg")]
 motion_mode = 1
-script = ExtResource("4_5gljf")
+script = ExtResource("4_7k74i")
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"
 input_left_action_name = "move_left"
