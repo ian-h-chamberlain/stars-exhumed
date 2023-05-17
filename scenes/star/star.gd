@@ -1,11 +1,13 @@
-extends MeshInstance3D
 class_name Star
+extends MeshInstance3D
 
 ## A clickable star object used to construct constellations
 
 # Emitted when this star is (un)selected by the player clicking it.
 # Emits true if selected or false if unselected
+
 signal clicked
+signal right_clicked
 
 ## The minimum scale of the collider
 @export var min_collider_scale: float = 7.0
@@ -57,9 +59,14 @@ func _process(_delta):
 func _on_StaticBody_input_event(
 	_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int
 ) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		selected = not selected
-		clicked.emit(selected)
+	if event is InputEventMouseButton and event.pressed:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				selected = not selected
+				clicked.emit(selected)
+			MOUSE_BUTTON_RIGHT:
+				selected = true
+				right_clicked.emit()
 
 
 func _on_StaticBody_mouse_entered():

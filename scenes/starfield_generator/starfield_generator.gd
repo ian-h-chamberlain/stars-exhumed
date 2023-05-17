@@ -6,7 +6,7 @@ class_name StarfieldGenerator
 @export var num_stars: int = 100
 @export var star: PackedScene
 
-var stars: Array[Node3D] = []
+var stars: Array[Star] = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -15,7 +15,7 @@ var rng = RandomNumberGenerator.new()
 func _ready():
 	# Print seed for determinism, can regenerate if needed
 	rng.randomize()
-	print("Seeded with, ", rng.get_seed())
+	PlayerProgress.starfield_seed = rng.get_seed()
 
 	for i in range(num_stars):
 		var new_star = star.instantiate()

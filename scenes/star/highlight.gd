@@ -18,14 +18,14 @@ enum State { SELECTED, HOVERED, OFF }
 ## The selected state of the highlight circle
 @export var state: State = State.OFF
 
-@onready var camera = get_viewport().get_camera_3d()
+@onready var _camera = get_viewport().get_camera_3d()
 
 
 func _draw():
 	var world_pos = get_parent().global_position
-	var screen_pos = camera.unproject_position(world_pos)
+	var screen_pos = _camera.unproject_position(world_pos)
 
-	if camera.is_position_behind(world_pos):
+	if _camera.is_position_behind(world_pos):
 		return
 
 	var color = Color()

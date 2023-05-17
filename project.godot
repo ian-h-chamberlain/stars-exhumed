@@ -14,6 +14,10 @@ config/name="Wild-jam-57"
 run/main_scene="res://levels/starfield.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 
+[autoload]
+
+PlayerProgress="*res://scenes/global/player_progress.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/character-controller/plugin.cfg")
