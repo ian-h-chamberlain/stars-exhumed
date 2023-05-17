@@ -28,7 +28,5 @@ func _physics_process(delta):
 
 	move(delta, input_axis, false, false, false, input_down, input_up)
 
-
-func _process(_delta):
-	if OS.is_debug_build():
-		DebugDraw.draw_sphere(global_position, 0.5, Color.GREEN)
+#func _process(_delta):
+#	DebugDraw.draw_sphere(global_position, 0.5, Color.GREEN)

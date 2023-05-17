@@ -1,4 +1,7 @@
+class_name ConstellationBuilder
 extends Node3D
+
+signal constellation_added
 
 # The starfield from which to pull stars as part of the constellation.
 @export var starfield: StarfieldGenerator
@@ -35,6 +38,8 @@ func _on_Star_right_clicked(idx: int) -> void:
 	# to the player databank. For now just add unconditionally
 
 	PlayerProgress.add_constellation(_current_constellation)
+	constellation_added.emit()
+
 	_current_constellation = Constellation.new()
 
 

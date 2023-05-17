@@ -18,6 +18,11 @@ config/features=PackedStringArray("4.0", "GL Compatibility")
 
 PlayerProgress="*res://scenes/global/player_progress.gd"
 
+[display]
+
+window/size/viewport_width=1366
+window/size/viewport_height=768
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/character-controller/plugin.cfg")

@@ -1,7 +1,7 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://b7etuyx21kp4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2035"]
-bg_color = Color(0.6, 0.6, 0.6, 0.615686)
+bg_color = Color(0.469774, 0.591738, 0.878543, 0.615686)
 
 [resource]
 MarginContainer/constants/margin_bottom = 5

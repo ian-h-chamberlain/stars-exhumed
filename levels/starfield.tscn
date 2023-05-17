@@ -37,10 +37,11 @@ max_radius = 750.0
 min_distance = 30.0
 num_stars = 200
 
-[node name="Constellation" parent="." node_paths=PackedStringArray("starfield") instance=ExtResource("5_8e6lk")]
+[node name="ConstellationBuilder" parent="." node_paths=PackedStringArray("starfield") instance=ExtResource("5_8e6lk")]
 starfield = NodePath("../StarfieldGenerator")
 
-[node name="ConstellationUI" parent="." instance=ExtResource("6_ajb4q")]
+[node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder") instance=ExtResource("6_ajb4q")]
+constellation_builder = NodePath("../ConstellationBuilder")
 
 [editable path="OrbitController"]
 [editable path="OrbitController/OrbitController"]
