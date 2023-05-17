@@ -9,7 +9,7 @@ func _ready() -> void:
 		fast_close = false
 
 	if fast_close:
-		print("** Fast Close enabled in the 'level.gd' script **")
+		print("**Fast Close enabled**")
 
 	set_process_input(fast_close)
 

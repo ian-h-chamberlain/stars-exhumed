@@ -1,8 +1,8 @@
-extends CharacterController3D
 class_name OrbitController
+extends CharacterController3D
+# A point in space that a camera orbits around.
 
-## A point in space that a camera orbits around. The point can be moved with
-## WASDQE for 6DOF and the mouse can be used to orbit the point.
+# The point can be moved with WASDQE for 6DOF and the mouse can be used to orbit the point.
 
 @export var input_back_action_name := "move_backward"
 @export var input_forward_action_name := "move_forward"

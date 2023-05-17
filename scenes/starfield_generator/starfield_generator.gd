@@ -6,7 +6,7 @@ class_name StarfieldGenerator
 @export var num_stars: int = 100
 @export var star: PackedScene
 
-var _stars = []
+var _stars: Array[Node3D] = []
 
 var rng = RandomNumberGenerator.new()
 
