@@ -4,7 +4,7 @@ class_name Star
 ## A clickable star object used to construct constellations
 
 # Emitted when this star is (un)selected by the player clicking it.
-# Emits trure
+# Emits true if selected or false if unselected
 signal clicked
 
 ## The minimum scale of the collider

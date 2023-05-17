@@ -6,7 +6,7 @@ class_name StarfieldGenerator
 @export var num_stars: int = 100
 @export var star: PackedScene
 
-var _stars: Array[Node3D] = []
+var stars: Array[Node3D] = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -27,7 +27,7 @@ func _ready():
 				# print("Generating star ", len(_stars), " with pos ", star_pos)
 				break
 
-		_stars.push_back(new_star)
+		stars.push_back(new_star)
 		add_child(new_star)
 
 
@@ -43,7 +43,7 @@ func _generate_star_position() -> Vector3:
 	if star_pos.length() > max_radius:
 		return Vector3.ZERO
 
-	for existing_star in _stars:
+	for existing_star in stars:
 		if existing_star.position.distance_to(star_pos) < min_distance:
 			return Vector3.ZERO
 
