@@ -19,10 +19,10 @@ script = ExtResource("1_wkd86")
 
 [node name="StaticBody" type="StaticBody3D" parent="."]
 
-[node name="Collision" type="CollisionShape3D" parent="StaticBody"]
+[node name="MouseCollider" type="CollisionShape3D" parent="StaticBody"]
 shape = SubResource("SphereShape3D_chfhs")
 
 [node name="Highlight" type="Node2D" parent="."]
 script = ExtResource("1_8ynj5")
-selected_color = Color(0.694118, 0.917647, 0.541176, 1)
-hover_color = Color(0.607843, 0.737255, 1, 1)
+selected_color = Color(0.372549, 0.858824, 0.329412, 1)
+hover_color = Color(0.321569, 0.615686, 1, 1)

@@ -3,12 +3,14 @@ class_name Highlight
 
 ## Draw a circle around a given object, when this node is visible.
 
-## The radius of the circle to draw in pixels
-@export var radius: float = 10.0
+## The minimum radius of the circle to draw in pixels
+@export var min_radius: float = 7.0
+## The  maximum radius of the circle to draw in pixels
+@export var max_radius: float = 750.0
 ## Width of the line in ??? units
 @export var width: float = 1.0
 ## Number of points used to construct the circle
-@export var points: int = 25
+@export var points: int = 50
 
 ## The color of the circle when th
 @export var selected_color: Color = Color.RED
@@ -25,17 +27,32 @@ func _draw():
 	var world_pos = get_parent().global_position
 	var screen_pos = camera.unproject_position(world_pos)
 
-	if not camera.is_position_behind(world_pos) and state != State.OFF:
-		var color = Color()
+	if camera.is_position_behind(world_pos):
+		return
 
-		if state == State.SELECTED:
+	var color = Color()
+
+	match state:
+		State.SELECTED:
 			color = selected_color
-		elif state == State.HOVERED:
+		State.HOVERED:
 			color = hover_color
+		_:
+			return
 
-		draw_arc(screen_pos, radius, 0, TAU, points, color, width, true)
+	var distance = (camera.global_position - world_pos).length()
+	# Scale up for stars that are closer to the camera. Sheesh this took way too
+	# long to find the right curve for....
+	var radius = clamp(
+		2000 / distance,
+		min_radius,
+		max_radius,
+	)
+
+	print("distance ", distance, " radius ", radius)
+
+	draw_arc(screen_pos, radius, 0, TAU, points, color, width, true)
 
 
 func _process(_delta):
-	if not camera.is_position_behind(get_parent().global_position):
-		queue_redraw()
+	queue_redraw()
