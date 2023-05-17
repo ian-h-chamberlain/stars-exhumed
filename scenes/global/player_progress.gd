@@ -1,5 +1,7 @@
 extends Node
 
+@export var max_constellations: int = 5
+
 # The initial seed the starfield was generated with
 var starfield_seed: int:
 	set(seed_):
@@ -15,5 +17,8 @@ var _constellations: Array[Constellation] = []
 
 
 func add_constellation(cons: Constellation) -> void:
-	print("Adding constellation: ", cons)
-	_constellations.push_back(cons)
+	if len(_constellations) < max_constellations:
+		print("Adding constellation: ", cons)
+		_constellations.push_back(cons)
+	else:
+		print("Reach max # of constellations!")

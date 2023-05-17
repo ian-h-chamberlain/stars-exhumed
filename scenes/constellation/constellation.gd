@@ -19,6 +19,9 @@ var length: int = 0:
 # The transform of the camera when the constellation was recorded.
 var _camera_transform: Transform3D = Transform3D()
 
+# TODO: probably want some kind of bound box so we can actually align to the
+# box would be good enough?
+
 
 func _to_string() -> String:
 	return "Constellation(%s)" % [stars]
@@ -31,6 +34,7 @@ func add_star(idx: int) -> bool:
 
 	stars.push_back(idx)
 	return true
+
 
 func pop_star():
 	if length > 0:

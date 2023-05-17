@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://y42f8gi32pm5"]
+[gd_scene load_steps=10 format=3 uid="uid://y42f8gi32pm5"]
 
 [ext_resource type="PackedScene" uid="uid://beqqvynfgur8j" path="res://scenes/orbit/orbiter.tscn" id="1_4sixa"]
 [ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
 [ext_resource type="Texture2D" uid="uid://e251ad0he7e2" path="res://assets/textures/skybox/panorama_8192x4096.png" id="2_pqdv1"]
 [ext_resource type="PackedScene" uid="uid://dmvoghci4lp1i" path="res://scenes/starfield_generator/starfield_generator.tscn" id="4_0h61j"]
 [ext_resource type="PackedScene" uid="uid://dnfae4fcuvfeo" path="res://scenes/constellation/constellation.tscn" id="5_8e6lk"]
+[ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="6_ajb4q"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bpo7r"]
 panorama = ExtResource("2_pqdv1")
@@ -38,6 +39,8 @@ num_stars = 200
 
 [node name="Constellation" parent="." node_paths=PackedStringArray("starfield") instance=ExtResource("5_8e6lk")]
 starfield = NodePath("../StarfieldGenerator")
+
+[node name="ConstellationUI" parent="." instance=ExtResource("6_ajb4q")]
 
 [editable path="OrbitController"]
 [editable path="OrbitController/OrbitController"]
