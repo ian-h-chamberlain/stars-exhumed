@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbkh36rk3na08"]
+
+[ext_resource type="PackedScene" path="res://addons/character-controller/fps/fps_controller_3d.tscn" id="1_irdum"]
+[ext_resource type="Environment" uid="uid://u16cdme2oruc" path="res://scenes/starfield.tres" id="2_5iv4f"]
+[ext_resource type="Script" path="res://scenes/battlefield_player/battlefield_player.gd" id="2_dx7w0"]
+
+[node name="BattlefieldPlayer" instance=ExtResource("1_irdum")]
+script = ExtResource("2_dx7w0")
+input_back_action_name = "move_backward"
+input_forward_action_name = "move_forward"
+input_left_action_name = "move_left"
+input_right_action_name = "move_right"
+input_sprint_action_name = "move_sprint"
+input_jump_action_name = "move_jump"
+rotation_to_move = false
+abilities_path = Array[NodePath]([NodePath("Sprint Ability 3D"), NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D")])
+
+[node name="Camera" parent="Head" index="0"]
+environment = ExtResource("2_5iv4f")

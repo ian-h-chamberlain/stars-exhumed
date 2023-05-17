@@ -79,7 +79,8 @@ func set_size(value: int):
 		emit_signal("resolution_changed")
 		
 		clear(true, true, false)
-		build(size, section_size, lod_count)
+		
+		call_deferred("build", size, section_size, lod_count)
 
 func get_size():
 	return size

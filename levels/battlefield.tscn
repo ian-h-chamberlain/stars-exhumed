@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://clkgmgaucwtko"]
+
+[ext_resource type="Script" path="res://addons/terrain_3d/terrain.gd" id="1_qlklb"]
+[ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
+[ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
+[ext_resource type="Material" uid="uid://spvvetn3q6id" path="res://levels/battlefield_terrain.tres" id="4_k6rug"]
+
+[node name="Battlefield" type="Node3D"]
+script = ExtResource("1_twrda")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.219292, -0.80469, 0.55171, -0.327994, 0.593366, 0.735076, -0.918875, -0.0197611, -0.394054, -417.799, 279.873, 0)
+light_energy = 0.579
+
+[node name="Terrain3D" type="Node3D" parent="."]
+script = ExtResource("1_qlklb")
+surface_material = ExtResource("4_k6rug")
+size = 512
+height = 64
+particle_mesh_array = null
+particle_mask_texture = null
+
+[node name="BattlefieldPlayer" parent="." instance=ExtResource("3_gcjw7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)

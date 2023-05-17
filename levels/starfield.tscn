@@ -1,21 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://y42f8gi32pm5"]
+[gd_scene load_steps=7 format=3 uid="uid://y42f8gi32pm5"]
 
 [ext_resource type="PackedScene" uid="uid://beqqvynfgur8j" path="res://scenes/orbit/orbiter.tscn" id="1_4sixa"]
 [ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
-[ext_resource type="Texture2D" uid="uid://e251ad0he7e2" path="res://assets/textures/skybox/panorama_8192x4096.png" id="2_pqdv1"]
+[ext_resource type="Environment" uid="uid://u16cdme2oruc" path="res://scenes/starfield.tres" id="3_7y0x4"]
 [ext_resource type="PackedScene" uid="uid://dmvoghci4lp1i" path="res://scenes/starfield_generator/starfield_generator.tscn" id="4_0h61j"]
 [ext_resource type="PackedScene" uid="uid://dnfae4fcuvfeo" path="res://scenes/constellation/constellation.tscn" id="5_8e6lk"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="6_ajb4q"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bpo7r"]
-panorama = ExtResource("2_pqdv1")
-
-[sub_resource type="Sky" id="Sky_soxst"]
-sky_material = SubResource("PanoramaSkyMaterial_bpo7r")
-
-[sub_resource type="Environment" id="Environment_5y2he"]
-background_mode = 2
-sky = SubResource("Sky_soxst")
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
@@ -24,7 +14,7 @@ script = ExtResource("1_602wj")
 max_radius = 300.0
 
 [node name="OrbitCamera" parent="OrbitController" index="0"]
-environment = SubResource("Environment_5y2he")
+environment = ExtResource("3_7y0x4")
 current = true
 far = 1500.0
 
