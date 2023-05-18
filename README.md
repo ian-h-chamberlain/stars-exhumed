@@ -4,7 +4,7 @@ A game made for [Godot Wild Jam #57](https://itch.io/jam/godot-wild-jam-57).
 
 ## Credits
 
-Code / models / design by @ian-h-chamberlain.
+Code / design by @ian-h-chamberlain.
 
 ### Inspirations
 
@@ -16,6 +16,8 @@ Code / models / design by @ian-h-chamberlain.
 
 * [TrackballCamera](https://github.com/Goutte/godot-trackball-camera) by @Gouette
 * [Expresso Character Controller](https://github.com/expressobits/character-controller) by @expressobits
+* [Draw3D](https://github.com/nyxkn/godot-draw3d) by @nyxkn
+* [HTerrain](https://github.com/Zylann/godot_heightmap_plugin) (`godot4` branch) by @Zylann
 
 ### Assets
 
