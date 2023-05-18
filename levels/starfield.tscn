@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://y42f8gi32pm5"]
+[gd_scene load_steps=8 format=3 uid="uid://y42f8gi32pm5"]
 
 [ext_resource type="PackedScene" uid="uid://beqqvynfgur8j" path="res://scenes/orbit/orbiter.tscn" id="1_4sixa"]
 [ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
 [ext_resource type="Environment" uid="uid://u16cdme2oruc" path="res://scenes/starfield.tres" id="3_7y0x4"]
 [ext_resource type="PackedScene" uid="uid://dmvoghci4lp1i" path="res://scenes/starfield_generator/starfield_generator.tscn" id="4_0h61j"]
-[ext_resource type="PackedScene" uid="uid://dnfae4fcuvfeo" path="res://scenes/constellation/constellation.tscn" id="5_8e6lk"]
+[ext_resource type="PackedScene" uid="uid://dnw664fc18b73" path="res://scenes/constellation/constellation.tscn" id="5_8e6lk"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="6_ajb4q"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_wsr84"]
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
@@ -30,9 +32,13 @@ num_stars = 200
 [node name="ConstellationBuilder" parent="." node_paths=PackedStringArray("starfield") instance=ExtResource("5_8e6lk")]
 starfield = NodePath("../StarfieldGenerator")
 
-[node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport") instance=ExtResource("6_ajb4q")]
+[node name="Draw3D" parent="ConstellationBuilder/DrawConstellation3D" index="0"]
+mesh = SubResource("ImmediateMesh_wsr84")
+
+[node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport", "starfield_gen") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")
 constellation_viewport = NodePath("../ConstellationBuilder/ConstellationViewport")
+starfield_gen = NodePath("../StarfieldGenerator")
 
 [editable path="OrbitController"]
 [editable path="OrbitController/OrbitController"]

@@ -9,15 +9,17 @@ var stars: Array[int] = []:
 # Whether the constellation is "set" or not.
 var is_valid: bool = false:
 	get:
-		return _camera_transform != Transform3D()
+		return not screen_stars.is_empty()
 
 # How many stars are in this constellation.
 var length: int = 0:
 	get:
 		return len(stars)
 
-# The transform of the camera when the constellation was recorded.
-var _camera_transform: Transform3D = Transform3D()
+# The screenspace positions of each star, in order
+var screen_stars: Array[Vector2] = []:
+	get:
+		return screen_stars
 
 # TODO: probably want some kind of bound box so we can actually align to the
 # box would be good enough?
@@ -50,5 +52,16 @@ func peek():
 	return null
 
 
-func finish(camera: Camera3D) -> void:
-	self._camera_transform = camera.global_transform
+func finish(cam: Camera3D, starfield: StarfieldGenerator) -> void:
+	for idx in stars:
+		var star := starfield.stars[idx]
+
+		# project to screen space and normalize to [0.0, 1.0]
+		screen_stars.push_back(
+			(
+				cam.unproject_position(star.global_position)
+				/ cam.get_viewport().get_visible_rect().size
+			)
+		)
+
+	print("projected: ", screen_stars)

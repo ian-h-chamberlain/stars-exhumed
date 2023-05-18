@@ -4,6 +4,9 @@ extends Control
 
 @export var constellation_builder: ConstellationBuilder
 @export var constellation_viewport: ConstellationViewport
+@export var starfield_gen: StarfieldGenerator
+
+@export var margin: int = 5
 
 # https://github.com/godotengine/godot/issues/62916#issuecomment-1471750455
 @onready var viewport_textures := viewport_texture_paths.map(get_node)
@@ -15,9 +18,13 @@ func _ready():
 
 
 func _on_constellation_added() -> void:
-	var constellations = PlayerProgress.constellations
+	var constellations := PlayerProgress.constellations
 	var tex_rect: TextureRect = viewport_textures[len(constellations) - 1]
 
-	# TODO: align camera bounding box etc. to make this look a little nicer, maybe
-	var image := constellation_viewport.get_texture().get_image()
+	var texture := constellation_viewport.get_texture()
+	var image := texture.get_image()
+
+	# TODO it would be nice to crop here, and avoid showing other constellations
+	# in the image, but oh well for now
+
 	tex_rect.texture = ImageTexture.create_from_image(image)

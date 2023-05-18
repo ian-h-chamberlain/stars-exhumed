@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scenes/constellation/constellation_viewport.gd" id="2_br3qi"]
 [ext_resource type="Script" path="res://addons/draw3d/draw_3d.gd" id="5_x1iqo"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_gnqts"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_dmqs6"]
 
 [node name="ConstellationBuilder" type="Node3D"]
 script = ExtResource("1_7lhvo")
@@ -22,6 +22,6 @@ script = ExtResource("2_40a3a")
 builder = NodePath("..")
 
 [node name="Draw3D" type="MeshInstance3D" parent="DrawConstellation3D"]
-mesh = SubResource("ImmediateMesh_gnqts")
+mesh = SubResource("ImmediateMesh_dmqs6")
 skeleton = NodePath("../..")
 script = ExtResource("5_x1iqo")
