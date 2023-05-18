@@ -21,3 +21,5 @@ Code / models / design by @ian-h-chamberlain.
 
 * Skybox generated with [procedural space generator](https://tools.wwwtyro.net/space-3d/index.html) by @wwwtyro
   and converted using [this converter](https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html) by @danilw
+
+* Spellcasting circle: adapted from [public domain](https://picryl.com/media/elementa-9de2b5) alchemical circle

@@ -1,12 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://clkgmgaucwtko"]
+[gd_scene load_steps=8 format=3 uid="uid://clkgmgaucwtko"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="5_0do8u"]
+[ext_resource type="PackedScene" uid="uid://2pv53nmfjq8s" path="res://scenes/ui/spellcaster.tscn" id="6_jiwv4"]
 [ext_resource type="Resource" path="res://levels/terrain/data.hterrain" id="6_nw61g"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="7_g2rbh"]
 
-[sub_resource type="Resource" id="Resource_hfd0e"]
+[sub_resource type="Resource" id="Resource_li51c"]
 script = ExtResource("7_g2rbh")
 mode = 0
 textures = [[], []]
@@ -15,11 +16,14 @@ textures = [[], []]
 script = ExtResource("1_twrda")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.219292, -0.80469, 0.55171, -0.327994, 0.593366, 0.735076, -0.918875, -0.0197611, -0.394054, -417.799, 279.873, 0)
-light_energy = 1.5
+transform = Transform3D(-0.130684, -0.927124, 0.351231, -0.180929, 0.370622, 0.910991, -0.974775, 0.0555042, -0.216178, -415.954, 279.873, -0.209808)
+light_color = Color(0.729412, 0.729412, 1, 1)
+light_energy = 2.089
+light_indirect_energy = 7.079
 
-[node name="BattlefieldPlayer" parent="." instance=ExtResource("3_gcjw7")]
+[node name="BattlefieldPlayer" parent="." node_paths=PackedStringArray("spellcaster") instance=ExtResource("3_gcjw7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+spellcaster = NodePath("../Spellcaster")
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("5_0do8u")
@@ -32,10 +36,12 @@ collision_mask = 1
 shader_type = "Classic4Lite"
 custom_shader = null
 custom_globalmap_shader = null
-texture_set = SubResource("Resource_hfd0e")
+texture_set = SubResource("Resource_li51c")
 render_layers = 1
 cast_shadow = 1
 shader_params/u_ground_uv_scale = 20
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
+
+[node name="Spellcaster" parent="." instance=ExtResource("6_jiwv4")]

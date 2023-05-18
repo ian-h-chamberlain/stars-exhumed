@@ -1,4 +1,4 @@
-class_name BattilefieldPlayer
+class_name BattlefieldPlayer
 extends FPSController3D
 
 @export var input_back_action_name := "move_backward"
@@ -7,40 +7,62 @@ extends FPSController3D
 @export var input_right_action_name := "move_right"
 @export var input_sprint_action_name := "move_sprint"
 @export var input_jump_action_name := "move_jump"
+@export var input_cast_action_name := "cast_spell"
+@export var input_cancel_action_name := "cancel_spell"
+@export var input_fire_action_name := "fire"
+
+@export var spellcaster: Spellcaster
 
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	setup()
 
 
 func _physics_process(delta):
-	var is_valid_input := Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	var is_valid_input := Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
 
 	if is_valid_input:
-		var input_axis = Input.get_vector(
-			input_back_action_name,
-			input_forward_action_name,
-			input_left_action_name,
-			input_right_action_name
-		)
-		var input_jump = Input.is_action_just_pressed(input_jump_action_name)
-		var input_sprint = Input.is_action_pressed(input_sprint_action_name)
-
-		move(
-			delta,
-			input_axis,
-			input_jump,
-			false,
-			input_sprint,
-		)
+		_handle_fps_input(delta)
 	else:
 		# NOTE: It is important to always call move() even if we have no inputs
 		## to process, as we still need to calculate gravity and collisions.
 		move(delta)
 
+		if Input.is_action_just_pressed(input_cancel_action_name):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _handle_fps_input(delta: float) -> void:
+	var input_axis = Input.get_vector(
+		input_back_action_name,
+		input_forward_action_name,
+		input_left_action_name,
+		input_right_action_name
+	)
+	var input_jump = Input.is_action_just_pressed(input_jump_action_name)
+	var input_sprint = Input.is_action_pressed(input_sprint_action_name)
+
+	move(
+		delta,
+		input_axis,
+		input_jump,
+		false,
+		input_sprint,
+	)
+
+	if Input.is_action_just_pressed(input_cast_action_name):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+		var mouse_pos := spellcaster.global_position + Vector2.UP * spellcaster.height / 2.0
+		Input.warp_mouse(mouse_pos)
+
+	if Input.is_action_just_pressed(input_fire_action_name):
+		# TODO
+		print("firing projectile!")
+
 
 func _input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.relative)

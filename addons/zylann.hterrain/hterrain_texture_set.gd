@@ -108,7 +108,7 @@ func get_slots_count() -> int:
 
 	elif _mode == MODE_TEXTURE_ARRAYS:
 		# TODO What if there are two texture arrays of different size?
-		var texarray : TextureLayered = _textures[TYPE_ALBEDO_BUMP][0]
+		var texarray: TextureLayered = _textures[TYPE_ALBEDO_BUMP][0]
 		if texarray == null:
 			texarray = _textures[TYPE_NORMAL_ROUGHNESS][0]
 			if texarray == null:
@@ -123,7 +123,7 @@ func get_slots_count() -> int:
 func get_texture_count() -> int:
 	var texs = _textures[TYPE_ALBEDO_BUMP]
 	return len(texs)
-
+ 
 
 func get_texture(slot_index: int, ground_texture_type: int) -> Texture2D:
 	if _mode == MODE_TEXTURE_ARRAYS:
@@ -214,7 +214,7 @@ func remove_slot(i: int):
 	if i == -1:
 		i = get_slots_count() - 1
 	for type in TYPE_COUNT:
-		_textures[type].remove(i)
+		_textures[type].remove_at(i)
 	emit_changed()
 
 
