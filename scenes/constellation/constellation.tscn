@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dnfae4fcuvfeo"]
+[gd_scene load_steps=6 format=3 uid="uid://dnw664fc18b73"]
 
 [ext_resource type="Script" path="res://scenes/constellation/constellation_builder.gd" id="1_7lhvo"]
 [ext_resource type="Script" path="res://scenes/constellation/draw_constellation.gd" id="2_40a3a"]
 [ext_resource type="Script" path="res://scenes/constellation/constellation_viewport.gd" id="2_br3qi"]
+[ext_resource type="Script" path="res://addons/draw3d/draw_3d.gd" id="5_x1iqo"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_gnqts"]
 
 [node name="ConstellationBuilder" type="Node3D"]
 script = ExtResource("1_7lhvo")
@@ -14,7 +17,11 @@ size = Vector2i(175, 100)
 render_target_update_mode = 3
 script = ExtResource("2_br3qi")
 
-[node name="DrawConstellation" type="Node2D" parent="." node_paths=PackedStringArray("builder")]
+[node name="DrawConstellation3D" type="Node3D" parent="." node_paths=PackedStringArray("builder")]
 script = ExtResource("2_40a3a")
-line_width = 0.75
 builder = NodePath("..")
+
+[node name="Draw3D" type="MeshInstance3D" parent="DrawConstellation3D"]
+mesh = SubResource("ImmediateMesh_gnqts")
+skeleton = NodePath("../..")
+script = ExtResource("5_x1iqo")
