@@ -15,7 +15,8 @@ extends FPSController3D
 
 
 func _ready():
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_capture_mouse()
+	spellcaster.spell_primed.connect(_capture_mouse)
 	setup()
 
 
@@ -30,8 +31,12 @@ func _physics_process(delta):
 		move(delta)
 
 		if Input.is_action_just_pressed(input_cancel_action_name):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			_capture_mouse()
 			spellcaster.spell_cancelled.emit()
+
+
+func _capture_mouse():
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _handle_fps_input(delta: float) -> void:
@@ -59,8 +64,10 @@ func _handle_fps_input(delta: float) -> void:
 		Input.warp_mouse(mouse_pos)
 
 	if Input.is_action_just_pressed(input_fire_action_name):
-		# TODO
-		print("firing projectile!")
+		if spellcaster.spell:
+			spellcaster.spell_casted.emit()
+			# TODO actually spawn something here
+			print("firing projectile!")
 
 
 func _input(event: InputEvent) -> void:

@@ -21,6 +21,8 @@ var screen_stars: Array[Vector2] = []:
 	get:
 		return screen_stars
 
+var texture: ImageTexture
+
 # TODO: probably want some kind of bound box so we can actually align to the
 # box would be good enough?
 
