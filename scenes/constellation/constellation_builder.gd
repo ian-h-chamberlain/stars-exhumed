@@ -9,7 +9,7 @@ signal constellation_added
 # The max number of stars allowed in a constellation
 @export var max_stars: int = 5
 
-var _current_constellation := Constellation.new()
+var current_constellation := Constellation.new()
 
 
 func _ready() -> void:
@@ -23,49 +23,30 @@ func _on_Star_clicked(selected: bool, idx: int) -> void:
 	if selected:
 		_add_star(idx)
 	else:
-		_current_constellation.pop_star()
+		current_constellation.pop_star()
 		_select_last_star()
 
-	print("current cons: ", _current_constellation)
+	print("current cons: ", current_constellation)
 
 
 func _on_Star_right_clicked(idx: int) -> void:
 	_add_star(idx)
 	_get_last_star().selected = false
-	_current_constellation.finish(get_viewport().get_camera_3d())
+	current_constellation.finish(get_viewport().get_camera_3d())
 
 	# TODO some separate button etc to "accept" constellation and commit it
 	# to the player databank. For now just add unconditionally
 
-	PlayerProgress.add_constellation(_current_constellation)
+	PlayerProgress.add_constellation(current_constellation)
 	constellation_added.emit()
 
-	_current_constellation = Constellation.new()
-
-
-func _process(_delta: float) -> void:
-	_draw_constellation(_current_constellation)
-
-	for cons in PlayerProgress.constellations:
-		_draw_constellation(cons)
-
-
-func _draw_constellation(cons: Constellation):
-	for i in range(cons.length - 1):
-		var from := cons.stars[i]
-		var from_star := starfield.stars[from]
-
-		var to := cons.stars[i + 1]
-		var to_star := starfield.stars[to]
-
-		# TODO: avoid debug drawing and use a real mesh or something
-		DebugDraw.draw_line(from_star.global_position, to_star.global_position, Color.WHITE)
+	current_constellation = Constellation.new()
 
 
 func _add_star(idx: int) -> void:
 	var last_star = _get_last_star()
 
-	var added := _current_constellation.add_star(idx)
+	var added := current_constellation.add_star(idx)
 	if not added:
 		starfield.stars[idx].selected = false
 		_select_last_star()
@@ -82,7 +63,7 @@ func _select_last_star() -> void:
 
 
 func _get_last_star():
-	var idx = _current_constellation.peek()
+	var idx = current_constellation.peek()
 	if idx != null:
 		return starfield.stars[idx]
 

@@ -49,12 +49,6 @@ func _process(_delta):
 	var sphere_point = camera.project_position(Vector2.RIGHT * collider_scale, distance)
 	$StaticBody/MouseCollider.scale = (sphere_point - center).length() / 2.0 * Vector3.ONE
 
-	#DebugDraw.draw_sphere(
-	#	$StaticBody/MouseCollider.global_position,
-	#	$StaticBody/MouseCollider.scale.x * 2.0,
-	#	Color.BLUE
-	#)
-
 
 func _on_StaticBody_input_event(
 	_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int

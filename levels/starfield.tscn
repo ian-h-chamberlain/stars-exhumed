@@ -30,8 +30,10 @@ num_stars = 200
 [node name="ConstellationBuilder" parent="." node_paths=PackedStringArray("starfield") instance=ExtResource("5_8e6lk")]
 starfield = NodePath("../StarfieldGenerator")
 
-[node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder") instance=ExtResource("6_ajb4q")]
+[node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")
+constellation_viewport = NodePath("../ConstellationBuilder/ConstellationViewport")
 
 [editable path="OrbitController"]
 [editable path="OrbitController/OrbitController"]
+[editable path="ConstellationBuilder"]

@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnfae4fcuvfeo"]
+[gd_scene load_steps=4 format=3 uid="uid://dnfae4fcuvfeo"]
 
 [ext_resource type="Script" path="res://scenes/constellation/constellation_builder.gd" id="1_7lhvo"]
+[ext_resource type="Script" path="res://scenes/constellation/draw_constellation.gd" id="2_40a3a"]
+[ext_resource type="Script" path="res://scenes/constellation/constellation_viewport.gd" id="2_br3qi"]
 
 [node name="ConstellationBuilder" type="Node3D"]
 script = ExtResource("1_7lhvo")
+
+[node name="ConstellationViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+gui_disable_input = true
+size = Vector2i(175, 100)
+render_target_update_mode = 3
+script = ExtResource("2_br3qi")
+
+[node name="DrawConstellation" type="Node2D" parent="." node_paths=PackedStringArray("builder")]
+script = ExtResource("2_40a3a")
+line_width = 0.75
+builder = NodePath("..")
