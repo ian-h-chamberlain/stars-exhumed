@@ -31,6 +31,7 @@ func _physics_process(delta):
 
 		if Input.is_action_just_pressed(input_cancel_action_name):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+			spellcaster.spell_cancelled.emit()
 
 
 func _handle_fps_input(delta: float) -> void:

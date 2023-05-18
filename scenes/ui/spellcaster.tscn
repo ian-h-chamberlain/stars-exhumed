@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2pv53nmfjq8s"]
+[gd_scene load_steps=5 format=3 uid="uid://2pv53nmfjq8s"]
 
 [ext_resource type="Theme" uid="uid://b7etuyx21kp4h" path="res://scenes/ui/base_theme.tres" id="1_hqqcb"]
 [ext_resource type="Texture2D" uid="uid://bkjora8j1n8md" path="res://assets/textures/spellcaster/parchment.png" id="2_0u22t"]
 [ext_resource type="Script" path="res://scenes/ui/spellcaster.gd" id="2_wur2m"]
+[ext_resource type="Script" path="res://scenes/ui/spell_circle.gd" id="4_7ey0p"]
 
 [node name="Spellcaster" type="Control"]
 layout_mode = 3
@@ -31,3 +32,7 @@ grow_vertical = 0
 texture = ExtResource("2_0u22t")
 expand_mode = 1
 stretch_mode = 4
+script = ExtResource("4_7ey0p")
+star_radius = 10.0
+star_color = Color(0.482353, 0.952941, 0.886275, 1)
+line_width = 1.5
