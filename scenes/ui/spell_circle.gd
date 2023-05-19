@@ -53,7 +53,6 @@ func _on_gui_input(e: InputEvent) -> void:
 		_:
 			return
 
-	print("casting constellation: ", _current_constellation)
 	queue_redraw()
 
 
@@ -77,6 +76,8 @@ func _perform_cast(cons: Constellation):
 
 	_current_spell.texture = cons.texture
 	_current_spell.visible = true
+
+	print("casting spell: ", _current_constellation)
 
 	_current_constellation.clear()
 

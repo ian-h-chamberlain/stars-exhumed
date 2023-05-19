@@ -60,7 +60,11 @@ func _handle_fps_input(delta: float) -> void:
 	if Input.is_action_just_pressed(input_cast_action_name):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-		var mouse_pos := spellcaster.global_position + Vector2.UP * spellcaster.height / 2.0
+		var spell_circle := spellcaster.find_child("SpellCircle") as Control
+		var mouse_pos: Vector2 = (
+			spell_circle.global_position
+			+ Vector2(spell_circle.size.x / 2.0, spell_circle.size.y / 2.0)
+		)
 		Input.warp_mouse(mouse_pos)
 
 	if Input.is_action_just_pressed(input_fire_action_name):

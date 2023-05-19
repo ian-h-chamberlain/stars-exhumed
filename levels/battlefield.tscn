@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://clkgmgaucwtko"]
+[gd_scene load_steps=9 format=3 uid="uid://clkgmgaucwtko"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://2pv53nmfjq8s" path="res://scenes/ui/spellcaster.tscn" id="6_jiwv4"]
 [ext_resource type="Resource" path="res://levels/terrain/data.hterrain" id="6_nw61g"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="7_g2rbh"]
+[ext_resource type="AudioStream" uid="uid://bpmm2fhu4icey" path="res://assets/music/Battle Highlands.mp3" id="7_upncm"]
 
 [sub_resource type="Resource" id="Resource_li51c"]
 script = ExtResource("7_g2rbh")
@@ -24,6 +25,9 @@ light_indirect_energy = 7.079
 [node name="BattlefieldPlayer" parent="." node_paths=PackedStringArray("spellcaster") instance=ExtResource("3_gcjw7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 spellcaster = NodePath("../Spellcaster")
+
+[node name="AudioRemoteTransform" type="RemoteTransform3D" parent="BattlefieldPlayer"]
+remote_path = NodePath("../../Spellcaster/SpellcastAudioPlayer")
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("5_0do8u")
@@ -45,3 +49,13 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="Spellcaster" parent="." instance=ExtResource("6_jiwv4")]
+
+[node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_upncm")
+volume_db = -9.0
+autoplay = true
+
+[editable path="Spellcaster"]

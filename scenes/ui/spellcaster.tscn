@@ -1,19 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://2pv53nmfjq8s"]
+[gd_scene load_steps=10 format=3 uid="uid://2pv53nmfjq8s"]
 
 [ext_resource type="Theme" uid="uid://b7etuyx21kp4h" path="res://scenes/ui/base_theme.tres" id="1_hqqcb"]
 [ext_resource type="Texture2D" uid="uid://bkjora8j1n8md" path="res://assets/textures/spellcaster/parchment.png" id="2_0u22t"]
 [ext_resource type="Script" path="res://scenes/ui/spellcaster.gd" id="2_wur2m"]
 [ext_resource type="Script" path="res://scenes/ui/spell_circle.gd" id="4_7ey0p"]
+[ext_resource type="Script" path="res://scenes/ui/reticle.gd" id="5_km6fp"]
+[ext_resource type="Script" path="res://scenes/ui/spellcast_audio_player.gd" id="6_c8b0y"]
+[ext_resource type="AudioStream" uid="uid://jjc0x4l2p54g" path="res://assets/sounds/Magic_Spells_CastShort_Push14.wav" id="7_qvdyj"]
+[ext_resource type="AudioStream" uid="uid://8gjd867sxbfm" path="res://assets/sounds/Magic_Spells_Impact_Creation20.wav" id="8_aa5xf"]
+[ext_resource type="AudioStream" uid="uid://cuihc00681j5x" path="res://assets/sounds/LV-HTIS Power Down 01.wav" id="9_7ll4o"]
 
 [node name="Spellcaster" type="Control"]
 layout_mode = 3
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+mouse_filter = 1
 theme = ExtResource("1_hqqcb")
 script = ExtResource("2_wur2m")
 
@@ -57,3 +61,26 @@ visible = false
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 6
+
+[node name="Reticle" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_km6fp")
+radius = 10.0
+width = 1.008
+color = Color(0.941176, 0, 0.282353, 0.705882)
+point_count = 10
+
+[node name="SpellcastAudioPlayer" type="AudioStreamPlayer3D" parent="."]
+script = ExtResource("6_c8b0y")
+prime_sound = ExtResource("7_qvdyj")
+cast_sound = ExtResource("8_aa5xf")
+cancel_sound = ExtResource("9_7ll4o")

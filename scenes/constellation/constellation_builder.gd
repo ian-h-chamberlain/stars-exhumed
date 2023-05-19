@@ -46,7 +46,8 @@ func _on_Star_right_clicked(idx: int) -> void:
 func _add_star(idx: int) -> void:
 	var last_star = _get_last_star()
 
-	var added := current_constellation.add_star(idx)
+	var too_full := len(current_constellation.stars) >= max_stars
+	var added := not too_full and current_constellation.add_star(idx)
 	if not added:
 		starfield.stars[idx].selected = false
 		_select_last_star()
