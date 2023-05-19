@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clkgmgaucwtko" path="res://levels/battlefield.tscn" id="7_4k775"]
 [ext_resource type="AudioStream" uid="uid://cpvbgwue414ko" path="res://assets/music/Across the Sand WIP2.mp3" id="8_smgtg"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_nvqxw"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_4qfbh"]
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
@@ -35,13 +35,30 @@ num_stars = 200
 starfield = NodePath("../StarfieldGenerator")
 
 [node name="Draw3D" parent="ConstellationBuilder/DrawConstellation3D" index="0"]
-mesh = SubResource("ImmediateMesh_nvqxw")
+mesh = SubResource("ImmediateMesh_4qfbh")
 
 [node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport", "starfield_gen") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")
 constellation_viewport = NodePath("../ConstellationBuilder/ConstellationViewport")
 starfield_gen = NodePath("../StarfieldGenerator")
 battlefield_scene = ExtResource("7_4k775")
+
+[node name="MarginContainer" type="MarginContainer" parent="ConstellationUI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -137.0
+offset_bottom = 41.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+
+[node name="ContinueButton" type="Button" parent="ConstellationUI/MarginContainer"]
+layout_mode = 2
+tooltip_text = "Discover some spells first!"
+disabled = true
+text = "Save the world!"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_smgtg")

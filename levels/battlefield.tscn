@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://clkgmgaucwtko"]
+[gd_scene load_steps=12 format=3 uid="uid://clkgmgaucwtko"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="7_g2rbh"]
 [ext_resource type="AudioStream" uid="uid://bpmm2fhu4icey" path="res://assets/music/Battle Highlands.mp3" id="7_upncm"]
 [ext_resource type="PackedScene" uid="uid://dj3v8o487ruhf" path="res://scenes/projectile/projectile.tscn" id="8_ihird"]
+[ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="9_karqw"]
+[ext_resource type="Script" path="res://scenes/ui/battlefield_constellation_ui.gd" id="10_pw2uj"]
 
 [sub_resource type="Resource" id="Resource_li51c"]
 script = ExtResource("7_g2rbh")
@@ -50,16 +52,20 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
-[node name="Spellcaster" parent="." instance=ExtResource("6_jiwv4")]
-
-[node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_upncm")
 volume_db = -9.0
 autoplay = true
 
+[node name="ConstellationUI" parent="." instance=ExtResource("9_karqw")]
+script = ExtResource("10_pw2uj")
+
+[node name="Spellcaster" parent="." instance=ExtResource("6_jiwv4")]
+
+[node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+
 [connection signal="spell_casted" from="Spellcaster" to="BattlefieldPlayer" method="_on_spellcaster_spell_casted"]
 
+[editable path="ConstellationUI"]
 [editable path="Spellcaster"]

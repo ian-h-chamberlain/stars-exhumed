@@ -6,8 +6,6 @@ extends Control
 @export var constellation_viewport: ConstellationViewport
 @export var starfield_gen: StarfieldGenerator
 
-@export var margin: int = 5
-
 @export var battlefield_scene: PackedScene
 
 # https://github.com/godotengine/godot/issues/62916#issuecomment-1471750455
@@ -19,11 +17,12 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	constellation_builder.connect("constellation_added", _on_constellation_added)
-	_continue.pressed.connect(_on_continue_pressed)
+	if _continue:
+		_continue.pressed.connect(_on_continue_pressed)
 
 
 func _on_constellation_added() -> void:
-	if _continue.disabled:
+	if _continue and _continue.disabled:
 		_continue.disabled = false
 		_continue.tooltip_text = ""
 

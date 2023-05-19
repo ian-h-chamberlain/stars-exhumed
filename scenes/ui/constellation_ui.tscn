@@ -26,7 +26,7 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 192.0
+offset_right = 150.0
 grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
@@ -42,7 +42,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m23wc")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
-custom_minimum_size = Vector2(178, 100)
+custom_minimum_size = Vector2(175, 100)
 layout_mode = 2
 theme = ExtResource("1_a5xvf")
 expand_mode = 1
@@ -53,7 +53,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m23wc")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
-custom_minimum_size = Vector2(178, 100)
+custom_minimum_size = Vector2(175, 100)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -63,7 +63,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m23wc")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
-custom_minimum_size = Vector2(178, 100)
+custom_minimum_size = Vector2(175, 100)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -73,7 +73,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m23wc")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer4"]
-custom_minimum_size = Vector2(178, 100)
+custom_minimum_size = Vector2(175, 100)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
@@ -83,24 +83,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m23wc")
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer5"]
-custom_minimum_size = Vector2(178, 100)
+custom_minimum_size = Vector2(175, 100)
 layout_mode = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -137.0
-offset_bottom = 41.0
-grow_horizontal = 0
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-
-[node name="ContinueButton" type="Button" parent="MarginContainer"]
-layout_mode = 2
-tooltip_text = "Discover some spells first!"
-disabled = true
-text = "Save the world!"

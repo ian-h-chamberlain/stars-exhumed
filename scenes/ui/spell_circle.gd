@@ -22,6 +22,7 @@ var is_casting: bool:
 # skip the first once since it's always 0 and would bring down the avg
 var _current_constellation: Array[Vector2] = []
 var _is_primed: bool = false
+var _shader_time: float = 0
 
 @onready var _current_spell = $MarginContainer/CurrentSpell as TextureRect
 @onready var _timer = $Timer as Timer
@@ -34,6 +35,11 @@ func _ready():
 	spell_casted.connect(_on_spell_casted)
 	spell_cancelled.connect(_on_spell_cancelled)
 	_timer.timeout.connect(_reset_material)
+
+
+func _process(delta: float):
+	material.set_shader_parameter("time", _shader_time)
+	_shader_time += delta
 
 
 func _draw() -> void:
@@ -51,6 +57,7 @@ func _draw() -> void:
 func _on_spell_casted():
 	_is_primed = false
 	_current_spell.visible = false
+	_reset_material()
 
 
 func _on_spell_cancelled():
@@ -90,7 +97,9 @@ func _attempt_cast():
 			_perform_cast(cons)
 			return
 
+	_on_spell_cancelled()
 	$"../SpellcastAudioPlayer".spell_failed.emit()
+	_shader_time = 0
 	material.set_shader_parameter(GLOW_COLOR, fail_glow)
 	_timer.start()
 
@@ -134,6 +143,7 @@ func _perform_cast(cons: Constellation):
 
 	print("casting spell: ", _current_constellation)
 
+	_shader_time = 0
 	material.set_shader_parameter(GLOW_COLOR, cast_glow)
 	_timer.start()
 
