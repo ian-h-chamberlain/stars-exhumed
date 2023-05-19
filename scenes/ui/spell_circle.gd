@@ -10,6 +10,9 @@ signal spell_casted
 @export var line_color: Color = Color.PALE_GREEN
 @export var line_width: float = 0.5
 
+@export var cast_glow: Color = Color.GREEN
+@export var fail_glow: Color = Color.RED
+
 @export var similarity_threshold: float = 0.2
 
 var is_casting: bool:
@@ -21,12 +24,16 @@ var _current_constellation: Array[Vector2] = []
 var _is_primed: bool = false
 
 @onready var _current_spell = $MarginContainer/CurrentSpell as TextureRect
+@onready var _timer = $Timer as Timer
+
+const GLOW_COLOR := "glow_color"
 
 
 func _ready():
 	connect("gui_input", _on_gui_input)
 	spell_casted.connect(_on_spell_casted)
 	spell_cancelled.connect(_on_spell_cancelled)
+	_timer.timeout.connect(_reset_material)
 
 
 func _draw() -> void:
@@ -49,6 +56,10 @@ func _on_spell_casted():
 func _on_spell_cancelled():
 	_current_constellation.clear()
 	queue_redraw()
+
+
+func _reset_material():
+	material.set_shader_parameter(GLOW_COLOR, Color.BLACK)
 
 
 func _on_gui_input(e: InputEvent) -> void:
@@ -79,7 +90,9 @@ func _attempt_cast():
 			_perform_cast(cons)
 			return
 
-	# TODO play some kind of error sound or something. Maybe emit cancel?
+	$"../SpellcastAudioPlayer".spell_failed.emit()
+	material.set_shader_parameter(GLOW_COLOR, fail_glow)
+	_timer.start()
 
 
 func _matches_constellation(cons: Constellation):
@@ -120,6 +133,9 @@ func _perform_cast(cons: Constellation):
 	_current_spell.visible = true
 
 	print("casting spell: ", _current_constellation)
+
+	material.set_shader_parameter(GLOW_COLOR, cast_glow)
+	_timer.start()
 
 	_current_constellation.clear()
 
