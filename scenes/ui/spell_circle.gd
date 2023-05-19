@@ -12,6 +12,10 @@ signal spell_casted
 
 @export var similarity_threshold: float = 0.9
 
+var is_casting: bool:
+	get:
+		return _current_constellation != []
+
 var _current_constellation: Array[Vector2] = []
 var _is_primed: bool = false
 
@@ -21,6 +25,7 @@ var _is_primed: bool = false
 func _ready():
 	connect("gui_input", _on_gui_input)
 	spell_casted.connect(_on_spell_casted)
+	spell_cancelled.connect(_on_spell_cancelled)
 
 
 func _draw() -> void:
@@ -33,6 +38,16 @@ func _draw() -> void:
 
 		draw_circle(cur_pos, star_radius, star_color)
 		draw_line(prev_pos, cur_pos, line_color, line_width, true)
+
+
+func _on_spell_casted():
+	_is_primed = false
+	_current_spell.visible = false
+
+
+func _on_spell_cancelled():
+	_current_constellation.clear()
+	queue_redraw()
 
 
 func _on_gui_input(e: InputEvent) -> void:
@@ -67,6 +82,9 @@ func _attempt_cast():
 
 
 func _matches_constellation(cons: Constellation):
+	if len(cons.stars) != len(_current_constellation):
+		return false
+
 	return true
 
 
@@ -81,7 +99,4 @@ func _perform_cast(cons: Constellation):
 
 	_current_constellation.clear()
 
-
-func _on_spell_casted():
-	_is_primed = false
-	_current_spell.visible = false
+	queue_redraw()

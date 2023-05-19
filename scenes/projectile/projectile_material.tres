@@ -1,0 +1,23 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://uftatlk6s21t"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_85eml"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fj3fh"]
+width = 128
+height = 128
+noise = SubResource("FastNoiseLite_85eml")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w3o2f"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1fqpe"]
+noise = SubResource("FastNoiseLite_w3o2f")
+
+[resource]
+transparency = 1
+cull_mode = 1
+albedo_color = Color(1, 0.34902, 0, 0.470588)
+albedo_texture = SubResource("NoiseTexture2D_fj3fh")
+emission_enabled = true
+emission = Color(1, 0.192157, 0.152941, 1)
+emission_energy_multiplier = 1.25
+normal_texture = SubResource("NoiseTexture2D_1fqpe")

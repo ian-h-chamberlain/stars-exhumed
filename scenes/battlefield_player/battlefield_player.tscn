@@ -15,6 +15,7 @@ input_jump_action_name = "move_jump"
 input_cast_action_name = "cast_spell"
 input_cancel_action_name = "cancel_spell"
 input_fire_action_name = "fire"
+projectile = null
 rotation_to_move = false
 abilities_path = Array[NodePath]([NodePath("Sprint Ability 3D"), NodePath("Walk Ability 3D"), NodePath("Jump Ability 3D")])
 

@@ -15,15 +15,15 @@ var spell:
 
 
 func _ready() -> void:
-	spell_cancelled.connect(func(): spell_circle.spell_cancelled.emit())
-
+	spell_cancelled.connect(_cancel_cast)
 	spell_casted.connect(_clear_spell)
 	spell_circle.spell_primed.connect(_set_spell)
 
 
 func _cancel_cast():
+	if spell_circle.is_casting:
+		_audio_player.spell_cancelled.emit()
 	spell_circle.spell_cancelled.emit()
-	_audio_player.spell_cancelled.emit()
 
 
 func _set_spell(cons: Constellation):
@@ -34,6 +34,7 @@ func _set_spell(cons: Constellation):
 
 
 func _clear_spell():
+	spell = null
 	_audio_player.spell_casted.emit()
 	reticle.visible = false
 	spell_circle.spell_casted.emit()

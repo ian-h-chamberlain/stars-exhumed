@@ -12,6 +12,9 @@ extends FPSController3D
 @export var input_fire_action_name := "fire"
 
 @export var spellcaster: Spellcaster
+@export var projectile: PackedScene
+
+@onready var _camera := get_viewport().get_camera_3d()
 
 
 func _ready():
@@ -68,13 +71,22 @@ func _handle_fps_input(delta: float) -> void:
 		Input.warp_mouse(mouse_pos)
 
 	if Input.is_action_just_pressed(input_fire_action_name):
-		if spellcaster.spell:
-			spellcaster.spell_casted.emit()
-			# TODO actually spawn something here
-			print("firing projectile!")
+		# if spellcaster.spell:
+		spellcaster.spell_casted.emit()
 
 
 func _input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.relative)
+
+
+func _on_spellcaster_spell_casted():
+	var new_projectile := projectile.instantiate() as SpellProjectile
+
+	var fwd_direction := -_camera.global_transform.basis.z
+
+	new_projectile.global_transform = global_transform
+	new_projectile.travel_direction = fwd_direction
+
+	get_parent().add_child(new_projectile)

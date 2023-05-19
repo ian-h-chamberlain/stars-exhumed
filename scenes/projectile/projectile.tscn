@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dj3v8o487ruhf"]
+
+[ext_resource type="Script" path="res://scenes/projectile/projectile.gd" id="1_mbpw8"]
+[ext_resource type="Material" uid="uid://uftatlk6s21t" path="res://scenes/projectile/projectile_material.tres" id="2_kkclb"]
+[ext_resource type="Material" uid="uid://u7o3b05m55r6" path="res://scenes/projectile/projectile_center_material.tres" id="3_rff35"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_35al1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_3qxcw"]
+material = ExtResource("2_kkclb")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wudqw"]
+material = ExtResource("3_rff35")
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="SpellProjectile" type="RigidBody3D"]
+gravity_scale = 0.0
+script = ExtResource("1_mbpw8")
+travel_speed = 20.0
+
+[node name="SpellCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_35al1")
+
+[node name="AuraMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_3qxcw")
+skeleton = NodePath("")
+
+[node name="CenterMesh" type="Node3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CenterMesh"]
+transform = Transform3D(0.5, 0.5, 0.707107, -0.707107, 0.707107, 0, -0.5, -0.5, 0.707107, 0, 0, 0)
+mesh = SubResource("BoxMesh_wudqw")
+skeleton = NodePath("../../AuraMesh")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CenterMesh"]
+mesh = SubResource("BoxMesh_wudqw")
+skeleton = NodePath("../../AuraMesh")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="CenterMesh"]
+transform = Transform3D(0.5, -0.5, -0.707107, 0.707107, 0.707107, 0, 0.5, -0.5, 0.707107, 0, 0, 0)
+mesh = SubResource("BoxMesh_wudqw")
+skeleton = NodePath("../../AuraMesh")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.686275, 0.478431, 1)
+light_energy = 6.0
+light_size = 2.0
