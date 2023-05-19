@@ -10,12 +10,13 @@ signal spell_casted
 @export var line_color: Color = Color.PALE_GREEN
 @export var line_width: float = 0.5
 
-@export var similarity_threshold: float = 0.9
+@export var similarity_threshold: float = 0.2
 
 var is_casting: bool:
 	get:
-		return _current_constellation != []
+		return not _current_constellation.is_empty()
 
+# skip the first once since it's always 0 and would bring down the avg
 var _current_constellation: Array[Vector2] = []
 var _is_primed: bool = false
 
@@ -76,16 +77,39 @@ func _attempt_cast():
 		if _matches_constellation(cons):
 			print("got a match on constellation: ", cons)
 			_perform_cast(cons)
-			return true
+			return
 
-	return null
+	# TODO play some kind of error sound or something. Maybe emit cancel?
 
 
 func _matches_constellation(cons: Constellation):
 	if len(cons.stars) != len(_current_constellation):
 		return false
 
-	return true
+	var current = _current_constellation.map(func(px_pos): return Vector2(px_pos) / size)
+
+	var offset = current[0] - cons.screen_stars[0]
+
+	# attempt to overlay just by lining up the first elements together
+	current = current.map(func(pos): return pos - offset)
+
+	print("comparing ", cons.screen_stars, " and ", current)
+
+	var difference := 0.0
+	# skip the first once since it's always 0 and would bring down the avg
+	for i in len(cons.stars) - 1:
+		var lhs_dir = cons.screen_stars[i + 1] - cons.screen_stars[i - 1]
+		var rhs_dir = current[i + 1] - current[i - 1]
+
+		var point_diff = (rhs_dir - lhs_dir).length()
+		print("point diff: ", point_diff)
+		difference += point_diff
+
+	difference /= len(cons.stars)
+
+	print("difference was ", difference)
+
+	return difference < similarity_threshold
 
 
 func _perform_cast(cons: Constellation):

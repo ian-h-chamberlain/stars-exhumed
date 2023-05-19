@@ -23,6 +23,10 @@ func _ready():
 
 
 func _on_constellation_added() -> void:
+	if _continue.disabled:
+		_continue.disabled = false
+		_continue.tooltip_text = ""
+
 	var constellations := PlayerProgress.constellations
 	var cons := constellations[-1]
 	var tex_rect: TextureRect = viewport_textures[len(constellations) - 1]

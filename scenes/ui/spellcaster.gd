@@ -23,6 +23,7 @@ func _ready() -> void:
 func _cancel_cast():
 	if spell_circle.is_casting:
 		_audio_player.spell_cancelled.emit()
+
 	spell_circle.spell_cancelled.emit()
 
 

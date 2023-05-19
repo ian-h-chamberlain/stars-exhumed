@@ -14,12 +14,15 @@ material = ExtResource("3_rff35")
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="SpellProjectile" type="RigidBody3D"]
+collision_layer = 0
 gravity_scale = 0.0
+contact_monitor = true
 script = ExtResource("1_mbpw8")
-travel_speed = 20.0
+travel_speed = 35.0
 
 [node name="SpellCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_35al1")
+disabled = true
 
 [node name="AuraMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_3qxcw")
