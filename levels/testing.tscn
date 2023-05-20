@@ -22,7 +22,7 @@ func _process(delta):
 [node name="Root" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.998117, 0.0421702, 0.0445419, -0.0527561, 0.960658, 0.272679, -0.0312906, -0.274516, 0.961073, 13.4038, 20.0423, 404.518)
+transform = Transform3D(0.998117, 0.025382, 0.0558396, -0.0527561, 0.819653, 0.570426, -0.0312906, -0.572297, 0.819449, 13.4038, 20.0423, 404.518)
 script = SubResource("GDScript_aqgcv")
 target = NodePath("../MeteorSpawner")
 
@@ -35,4 +35,4 @@ transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0,
 shape = SubResource("WorldBoundaryShape3D_damvn")
 
 [node name="MeteorSpawner" parent="." instance=ExtResource("1_7walq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 164.212, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 92.5828, 0)

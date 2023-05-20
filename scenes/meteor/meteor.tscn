@@ -12,16 +12,16 @@
 [ext_resource type="ArrayMesh" uid="uid://oireta3nadbh" path="res://assets/models/rocks_Icosphere_cell009.res" id="10_bl4hr"]
 [ext_resource type="ArrayMesh" uid="uid://dmfe6fs1ygxk3" path="res://assets/models/rocks_Icosphere_cell010.res" id="11_j0c7w"]
 [ext_resource type="ArrayMesh" uid="uid://dk22gnd1eb05l" path="res://assets/models/rocks_Icosphere_cell012.res" id="13_jkb36"]
+[ext_resource type="PackedScene" uid="uid://c3d8jnsl6g2v4" path="res://scenes/explosion/explosion.tscn" id="14_3kwrq"]
 [ext_resource type="ArrayMesh" uid="uid://djaymgnudy6uk" path="res://assets/models/rocks_Icosphere_cell683.res" id="14_gnwf6"]
 [ext_resource type="ArrayMesh" uid="uid://b0gaag5t0yhiv" path="res://assets/models/rocks_Icosphere_cell013.res" id="14_rdu7x"]
 [ext_resource type="Material" uid="uid://3odbiefk5x6s" path="res://scenes/meteor/trail_material.tres" id="15_ko0nh"]
-[ext_resource type="AudioStream" uid="uid://buvcj26i0ukrf" path="res://assets/sounds/Magic_Explosion_Short19.wav" id="16_4vl8w"]
 
 [sub_resource type="Curve" id="Curve_hyd20"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0212121, 0.772727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_2c21b"]
+[sub_resource type="CurveTexture" id="CurveTexture_wwtrx"]
 curve = SubResource("Curve_hyd20")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3px0j"]
@@ -38,7 +38,7 @@ linear_accel_max = 4.0
 angle_max = 360.0
 scale_min = 0.5
 scale_max = 0.5
-scale_curve = SubResource("CurveTexture_2c21b")
+scale_curve = SubResource("CurveTexture_wwtrx")
 color = Color(1, 0.701961, 0.541176, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ud4m2"]
@@ -80,6 +80,8 @@ shadow_mesh = SubResource("ArrayMesh_cv3e8")
 [node name="Meteor" type="Node3D"]
 script = ExtResource("1_dy8br")
 meshes = Array[ArrayMesh]([ExtResource("2_mndoh"), ExtResource("3_wmtvu"), ExtResource("4_uoimh"), ExtResource("5_1jrj3"), ExtResource("6_rp6wp"), ExtResource("7_khndc"), ExtResource("9_crof3"), ExtResource("10_bl4hr"), ExtResource("11_j0c7w"), ExtResource("13_jkb36"), ExtResource("14_rdu7x"), ExtResource("14_gnwf6")])
+friction_force = 0.8
+explosion = ExtResource("14_3kwrq")
 
 [node name="MeteorTrail" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -113,6 +115,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 remote_path = NodePath("../../MeteorTrail")
 update_rotation = false
 update_scale = false
-
-[node name="ExplosionAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("16_4vl8w")

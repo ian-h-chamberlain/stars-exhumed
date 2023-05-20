@@ -1,32 +1,36 @@
 [gd_scene load_steps=8 format=3 uid="uid://dj3v8o487ruhf"]
 
 [ext_resource type="Script" path="res://scenes/projectile/projectile.gd" id="1_mbpw8"]
+[ext_resource type="PackedScene" uid="uid://c3d8jnsl6g2v4" path="res://scenes/explosion/explosion.tscn" id="2_dydmr"]
 [ext_resource type="Material" uid="uid://uftatlk6s21t" path="res://scenes/projectile/projectile_material.tres" id="2_kkclb"]
 [ext_resource type="Material" uid="uid://u7o3b05m55r6" path="res://scenes/projectile/projectile_center_material.tres" id="3_rff35"]
-[ext_resource type="AudioStream" uid="uid://buvcj26i0ukrf" path="res://assets/sounds/Magic_Explosion_Short19.wav" id="4_f73q4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_3qxcw"]
 material = ExtResource("2_kkclb")
+radius = 2.0
+height = 4.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_wudqw"]
 material = ExtResource("3_rff35")
 size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_35al1"]
+radius = 2.0
 
 [node name="SpellProjectile" type="RigidBody3D"]
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_mbpw8")
-travel_speed = 75.0
+travel_speed = 150.0
+explosion = ExtResource("2_dydmr")
 
 [node name="AuraMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_3qxcw")
 skeleton = NodePath("")
 
 [node name="CenterMesh" type="Node3D" parent="."]
-transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0, 0)
+transform = Transform3D(3.5, 0, 0, 0, 3.5, 0, 0, 0, 3.5, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CenterMesh"]
 transform = Transform3D(0.5, 0.5, 0.707107, -0.707107, 0.707107, 0, -0.5, -0.5, 0.707107, 0, 0, 0)
@@ -53,10 +57,9 @@ collision_mask = 6
 
 [node name="SpellCollider" type="CollisionShape3D" parent="SpellCollisionArea"]
 shape = SubResource("SphereShape3D_35al1")
+disabled = true
 
-[node name="DespawnTimer" type="Timer" parent="."]
-wait_time = 0.5
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
 one_shot = true
-
-[node name="ExplosionAudio" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_f73q4")
+autostart = true

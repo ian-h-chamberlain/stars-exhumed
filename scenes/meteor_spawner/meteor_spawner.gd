@@ -5,6 +5,7 @@ extends Node3D
 @export var spawn_radius: float = 200.0
 @export var target_radius: float = 50.0
 @export var meteor_speed: float = 150.0
+@export var max_meteors: int = 5
 
 @onready var _timer := $Timer as Timer
 
@@ -14,6 +15,9 @@ func _ready():
 
 
 func _spawn_meteor():
+	if get_child_count() - 1 >= max_meteors:
+		return
+
 	var new_meteor := meteor.instantiate()
 	add_child(new_meteor)
 

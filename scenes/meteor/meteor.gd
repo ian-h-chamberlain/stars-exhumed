@@ -6,12 +6,14 @@ signal destroyed(other: Node3D)
 @export var meshes: Array[ArrayMesh]
 @export var angular_speed: float = 5.0
 @export var friction_force: float = 0.6
+@export var explosion: PackedScene
+
+var _mesh_rotation_dir: Vector3
 
 @onready var body := $MeteorBody as RigidBody3D
 @onready var _mesh := $MeteorBody/MeteorCollider/MeteorMesh as MeshInstance3D
 @onready var _collider := $MeteorBody/MeteorCollider as CollisionShape3D
 @onready var _preloader := $ResourcePreloader as ResourcePreloader
-@onready var _player := $ExplosionAudio as AudioStreamPlayer3D
 
 var _mesh_idx: int
 
@@ -26,12 +28,14 @@ func _ready():
 	if _preloader.has_resource(shape_name):
 		_collider.shape = _preloader.get_resource(shape_name)
 
-	body.angular_velocity = (
-		Vector3(randf(), randf(), randf()).normalized() * randf_range(1.0, angular_speed)
-	)
+	_mesh_rotation_dir = (Vector3(randf(), randf(), randf()).normalized())
 
 	body.body_entered.connect(_on_collision)
 	destroyed.connect(_on_collision)
+
+
+func _physics_process(delta):
+	_mesh.rotate(_mesh_rotation_dir, angular_speed * delta)
 
 
 func _process(_delta):
@@ -55,7 +59,10 @@ func _shape_name() -> String:
 
 
 func _on_collision(collided_body: Node3D):
-	# projectile plays its own explosion sound and despawns us so don't deduplicate
-	if not collided_body.owner is SpellProjectile and not collided_body.owner is Meteor:
-		_player.play()
+	if not collided_body.owner is Meteor and not collided_body.owner is BattlefieldPlayer:
+		print("spawning explosion at ", position)
+		var expl := explosion.instantiate()
+		get_parent().add_child(expl)
+		expl.global_position = body.global_position
+
 		queue_free()

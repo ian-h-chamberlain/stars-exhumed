@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://scenes/battlefield_player/battlefield_player.gd" id="2_dx7w0"]
 
 [node name="BattlefieldPlayer" instance=ExtResource("1_irdum")]
+collision_mask = 2
 script = ExtResource("2_dx7w0")
 input_back_action_name = "move_backward"
 input_forward_action_name = "move_forward"

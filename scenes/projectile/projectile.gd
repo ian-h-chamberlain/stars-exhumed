@@ -4,6 +4,7 @@ extends RigidBody3D
 @export var rotation_speed: float = 3.0
 @export var travel_speed: float = 7.0
 @export var despawn_radius: float = 200.0
+@export var explosion: PackedScene
 
 var travel_direction := Vector3.ZERO:
 	set(dir):
@@ -14,8 +15,8 @@ var _inner_rotation_speed: float
 
 @onready var _center := $CenterMesh as Node3D
 @onready var _collision_area := $SpellCollisionArea as Area3D
-@onready var _despawn_timer := $DespawnTimer as Timer
-@onready var _audio_player := $ExplosionAudio as AudioStreamPlayer3D
+@onready var _collider := $SpellCollisionArea/SpellCollider as CollisionShape3D
+@onready var _timer := $Timer as Timer
 
 
 func _ready():
@@ -30,7 +31,7 @@ func _ready():
 
 	_collision_area.body_entered.connect(_on_spell_collision_area_body_entered)
 
-	_despawn_timer.timeout.connect(queue_free)
+	_timer.timeout.connect(func(): _collider.disabled = false)
 
 
 func _physics_process(delta):
@@ -44,13 +45,16 @@ func _process(_delta):
 
 
 func _on_spell_collision_area_body_entered(body: Node3D):
-	# TODO: probably should delay this free by a little bit to make the despawn
-	# less jarring?
+	if body.owner is BattlefieldPlayer:
+		return
 
 	if body.owner is Meteor:
 		body.owner.destroyed.emit(self)
+	else:
+		var expl := explosion.instantiate()
+		get_parent().add_child(expl)
+		print("spawning explosion at ", position)
+		expl.global_position = global_position
+		expl.scale *= 0.3
 
-	if not body.owner is BattlefieldPlayer:
-		_despawn_timer.start()
-
-	_audio_player.play()
+	queue_free()

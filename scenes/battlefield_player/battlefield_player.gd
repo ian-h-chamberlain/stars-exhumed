@@ -86,7 +86,7 @@ func _on_spellcaster_spell_casted():
 
 	var fwd_direction := -_camera.global_transform.basis.z
 
-	new_projectile.global_transform = global_transform
+	new_projectile.global_transform = _camera.global_transform.translated_local(2 * Vector3.FORWARD)
 	new_projectile.travel_direction = fwd_direction
 
 	get_parent().add_child(new_projectile)
