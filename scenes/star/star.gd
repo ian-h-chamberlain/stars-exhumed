@@ -59,7 +59,6 @@ func _on_StaticBody_input_event(
 				selected = not selected
 				clicked.emit(selected)
 			MOUSE_BUTTON_RIGHT:
-				selected = true
 				right_clicked.emit()
 
 

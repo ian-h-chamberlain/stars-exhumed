@@ -17,7 +17,7 @@ func _ready() -> void:
 	for i in range(len(starfield.stars)):
 		var star := starfield.stars[i]
 		star.connect("clicked", _on_Star_clicked.bind(i))
-		star.connect("right_clicked", _on_Star_right_clicked.bind(i))
+		star.connect("right_clicked", _on_right_clicked.bind(i))
 
 
 func _on_Star_clicked(selected: bool, idx: int) -> void:
@@ -30,14 +30,11 @@ func _on_Star_clicked(selected: bool, idx: int) -> void:
 	print("current cons: ", current_constellation)
 
 
-func _on_Star_right_clicked(idx: int) -> void:
-	_add_star(idx)
-
-	if len(current_constellation.stars) < min_stars:
+func _on_right_clicked(idx: int) -> void:
+	if idx not in current_constellation.stars or len(current_constellation.stars) < min_stars:
 		$AudioStreamPlayer.play()
 		return
 
-	_get_last_star().selected = false
 	current_constellation.finish(get_viewport().get_camera_3d(), starfield)
 
 	# TODO maybe some separate button etc to "accept" constellation and commit it

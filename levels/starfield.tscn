@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://clkgmgaucwtko" path="res://levels/battlefield.tscn" id="7_4k775"]
 [ext_resource type="AudioStream" uid="uid://cpvbgwue414ko" path="res://assets/music/Across the Sand WIP2.mp3" id="8_smgtg"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_geary"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_7ul6v"]
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
@@ -35,7 +35,7 @@ num_stars = 200
 starfield = NodePath("../StarfieldGenerator")
 
 [node name="Draw3D" parent="ConstellationBuilder/DrawConstellation3D" index="0"]
-mesh = SubResource("ImmediateMesh_geary")
+mesh = SubResource("ImmediateMesh_7ul6v")
 
 [node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport", "starfield_gen") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")
@@ -51,14 +51,56 @@ anchor_right = 1.0
 offset_left = -137.0
 offset_bottom = 41.0
 grow_horizontal = 0
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
 [node name="ContinueButton" type="Button" parent="ConstellationUI/MarginContainer"]
 layout_mode = 2
 tooltip_text = "Discover some spells first!"
 disabled = true
 text = "Save the world!"
+
+[node name="HelpPanel" type="MarginContainer" parent="ConstellationUI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -409.0
+offset_top = -346.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="ConstellationUI/HelpPanel"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ConstellationUI/HelpPanel/PanelContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ConstellationUI/HelpPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ConstellationUI/HelpPanel/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Use the mouse to rotate the viewport and rediscover forgotten constellations to harness their power for your spellbook! Collect spells by clicking at least three (3) stars, then right-clicking a star in the constellation.
+
+You can use WASD and Q/E or Shift/Space to explore the stars and find spells you like for casting. Once you're ready, continue on to protect Earth from impending doom!"
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="OKButton" type="Button" parent="ConstellationUI/HelpPanel/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_smgtg")

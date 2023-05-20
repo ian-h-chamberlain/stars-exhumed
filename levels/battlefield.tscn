@@ -66,6 +66,49 @@ script = ExtResource("10_pw2uj")
 [node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 
+[node name="HelpPanel" type="MarginContainer" parent="Spellcaster"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -409.0
+offset_top = -346.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="Spellcaster/HelpPanel"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Spellcaster/HelpPanel/PanelContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Spellcaster/HelpPanel/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Spellcaster/HelpPanel/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Earth is in danger from cosmic distaster! A meteor storm is approaching and you must use the ancient spells you've learned from the heavens to protect it!
+
+Use WASD and mouse to look around, Shift to sprint, and Space to jump.
+
+Press E to begin casting a spell, or Q to cancel casting. To cast a spell, click on the parchment with the same pattern you used to learn the spell, then right-click anywhere on the parchment to finish preparing it. Once you have prepared a spell, click to fire it at an incoming meteor!"
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="OKButton" type="Button" parent="Spellcaster/HelpPanel/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
+
 [node name="MeteorSpawner" parent="." instance=ExtResource("11_dtbgf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 315.599, 0)
 
