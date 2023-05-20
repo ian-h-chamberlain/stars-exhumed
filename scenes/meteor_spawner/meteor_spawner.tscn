@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://qweofwdhbi2r"]
+
+[ext_resource type="Script" path="res://scenes/meteor_spawner/meteor_spawner.gd" id="1_3icam"]
+[ext_resource type="PackedScene" uid="uid://cfum1if5xbiww" path="res://scenes/meteor/meteor.tscn" id="2_yf2rf"]
+
+[node name="MeteorSpawner" type="Node3D"]
+script = ExtResource("1_3icam")
+meteor = ExtResource("2_yf2rf")
+spawn_radius = 150.0
+target_radius = 20.0
+meteor_speed = 25.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true

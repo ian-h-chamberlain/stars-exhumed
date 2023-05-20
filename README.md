@@ -29,3 +29,5 @@ Code / design by @ian-h-chamberlain.
 * Sound effects and music from <https://gamesounds.xyz>
 
 * Public domain [moon texture](https://commons.wikimedia.org/wiki/File:Moon_texture.jpg) by NASA
+
+* Flame particles from [Kenney Particle Pack](https://github.com/Calinou/kenney-particle-pack) by @Calinou

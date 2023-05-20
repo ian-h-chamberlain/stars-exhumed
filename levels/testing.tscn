@@ -21,9 +21,10 @@ func _process(delta):
 
 [node name="Root" type="Node3D"]
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(0.998117, 0.0196903, 0.0580913, -0.0527561, 0.75872, 0.649278, -0.0312906, -0.65112, 0.75833, 0.947678, 12.7127, 19.5463)
 script = SubResource("GDScript_aqgcv")
+target = NodePath("")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0, 0, 0)
@@ -34,13 +35,3 @@ transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0,
 shape = SubResource("WorldBoundaryShape3D_damvn")
 
 [node name="Meteor" parent="." instance=ExtResource("1_oh8u1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.28294, 0)
-
-[node name="Meteor2" parent="." instance=ExtResource("1_oh8u1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.985, 8.28294, 0)
-
-[node name="Meteor3" parent="." instance=ExtResource("1_oh8u1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.985, 10.8527, 6.78095)
-
-[node name="Meteor4" parent="." instance=ExtResource("1_oh8u1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46688, 10.8527, 10.1095)
