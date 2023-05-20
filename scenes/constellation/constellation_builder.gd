@@ -36,6 +36,7 @@ func _on_right_clicked(idx: int) -> void:
 		return
 
 	current_constellation.finish(get_viewport().get_camera_3d(), starfield)
+	_get_last_star().selected = false
 
 	# TODO maybe some separate button etc to "accept" constellation and commit it
 	# to the player databank. For now just add unconditionally
