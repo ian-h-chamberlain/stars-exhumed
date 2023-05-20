@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnw664fc18b73"]
+[gd_scene load_steps=7 format=3 uid="uid://dnw664fc18b73"]
 
 [ext_resource type="Script" path="res://scenes/constellation/constellation_builder.gd" id="1_7lhvo"]
 [ext_resource type="Script" path="res://scenes/constellation/draw_constellation.gd" id="2_40a3a"]
 [ext_resource type="Script" path="res://scenes/constellation/constellation_viewport.gd" id="2_br3qi"]
+[ext_resource type="AudioStream" uid="uid://cpk3ad6xh3n2" path="res://assets/sounds/wah_short_C_001.wav" id="5_d1u2s"]
 [ext_resource type="Script" path="res://addons/draw3d/draw_3d.gd" id="5_x1iqo"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_dmqs6"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_qw00i"]
 
 [node name="ConstellationBuilder" type="Node3D"]
 script = ExtResource("1_7lhvo")
@@ -22,6 +23,9 @@ script = ExtResource("2_40a3a")
 builder = NodePath("..")
 
 [node name="Draw3D" type="MeshInstance3D" parent="DrawConstellation3D"]
-mesh = SubResource("ImmediateMesh_dmqs6")
+mesh = SubResource("ImmediateMesh_qw00i")
 skeleton = NodePath("../..")
 script = ExtResource("5_x1iqo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d1u2s")

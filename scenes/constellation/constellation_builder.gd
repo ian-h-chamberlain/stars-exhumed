@@ -8,6 +8,7 @@ signal constellation_added
 
 # The max number of stars allowed in a constellation
 @export var max_stars: int = 5
+@export var min_stars: int = 3
 
 var current_constellation := Constellation.new()
 
@@ -31,6 +32,11 @@ func _on_Star_clicked(selected: bool, idx: int) -> void:
 
 func _on_Star_right_clicked(idx: int) -> void:
 	_add_star(idx)
+
+	if len(current_constellation.stars) < min_stars:
+		$AudioStreamPlayer.play()
+		return
+
 	_get_last_star().selected = false
 	current_constellation.finish(get_viewport().get_camera_3d(), starfield)
 

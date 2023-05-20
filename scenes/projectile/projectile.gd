@@ -51,9 +51,9 @@ func _on_spell_collision_area_body_entered(body: Node3D):
 	if body.owner is Meteor:
 		body.owner.destroyed.emit(self)
 	else:
+		print("spawning explosion at ", position)
 		var expl := explosion.instantiate()
 		get_parent().add_child(expl)
-		print("spawning explosion at ", position)
 		expl.global_position = global_position
 		expl.scale *= 0.3
 
