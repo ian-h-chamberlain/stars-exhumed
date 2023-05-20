@@ -1,12 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://clkgmgaucwtko"]
+[gd_scene load_steps=13 format=3 uid="uid://b36s2kj52ohlt"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="5_0do8u"]
 [ext_resource type="PackedScene" uid="uid://2pv53nmfjq8s" path="res://scenes/ui/spellcaster.tscn" id="6_jiwv4"]
 [ext_resource type="Resource" path="res://levels/terrain/data.hterrain" id="6_nw61g"]
+[ext_resource type="AudioStream" uid="uid://bpmm2fhu4icey" path="res://assets/music/BattleHighlands.mp3" id="7_631r0"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="7_g2rbh"]
-[ext_resource type="AudioStream" uid="uid://bpmm2fhu4icey" path="res://assets/music/Battle Highlands.mp3" id="7_upncm"]
 [ext_resource type="PackedScene" uid="uid://dj3v8o487ruhf" path="res://scenes/projectile/projectile.tscn" id="8_ihird"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="9_karqw"]
 [ext_resource type="Script" path="res://scenes/ui/battlefield_constellation_ui.gd" id="10_pw2uj"]
@@ -54,7 +54,7 @@ shader_params/u_triplanar = null
 shader_params/u_tile_reduction = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_upncm")
+stream = ExtResource("7_631r0")
 volume_db = -9.0
 autoplay = true
 
