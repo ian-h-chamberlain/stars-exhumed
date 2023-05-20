@@ -27,3 +27,5 @@ Code / design by @ian-h-chamberlain.
 * Spellcasting circle: adapted from [public domain](https://picryl.com/media/elementa-9de2b5) alchemical circle
 
 * Sound effects and music from <https://gamesounds.xyz>
+
+* Public domain [moon texture](https://commons.wikimedia.org/wiki/File:Moon_texture.jpg) by NASA

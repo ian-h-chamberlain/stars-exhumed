@@ -1,13 +1,46 @@
-[gd_scene load_steps=2 format=3 uid="uid://datqocmtbir74"]
+[gd_scene load_steps=4 format=3 uid="uid://datqocmtbir74"]
 
-[ext_resource type="PackedScene" uid="uid://dj3v8o487ruhf" path="res://scenes/projectile/projectile.tscn" id="1_tcepj"]
+[ext_resource type="PackedScene" uid="uid://cfum1if5xbiww" path="res://scenes/meteor/meteor.tscn" id="1_oh8u1"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="GDScript" id="GDScript_aqgcv"]
+script/source = "extends Camera3D
+
+@export var target: Node3D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if target:
+		look_at(target.global_position)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_damvn"]
+
+[node name="Root" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.994626, 0.0631699, 0.0820333, -0.0987202, 0.817459, 0.567463, -0.0312123, -0.572512, 0.819302, 0, 3.04343, 5.61949)
-
-[node name="SpellProjectile" parent="." instance=ExtResource("1_tcepj")]
+transform = Transform3D(0.998117, 0.0196903, 0.0580913, -0.0527561, 0.75872, 0.649278, -0.0312906, -0.65112, 0.75833, 0.947678, 12.7127, 19.5463)
+script = SubResource("GDScript_aqgcv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("WorldBoundaryShape3D_damvn")
+
+[node name="Meteor" parent="." instance=ExtResource("1_oh8u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.28294, 0)
+
+[node name="Meteor2" parent="." instance=ExtResource("1_oh8u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.985, 8.28294, 0)
+
+[node name="Meteor3" parent="." instance=ExtResource("1_oh8u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.985, 10.8527, 6.78095)
+
+[node name="Meteor4" parent="." instance=ExtResource("1_oh8u1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46688, 10.8527, 10.1095)

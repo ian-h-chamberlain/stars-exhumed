@@ -1,0 +1,32 @@
+[gd_scene load_steps=16 format=3 uid="uid://cfum1if5xbiww"]
+
+[ext_resource type="Script" path="res://scenes/meteor/meteor.gd" id="1_dy8br"]
+[ext_resource type="ArrayMesh" uid="uid://21rrfornvyhm" path="res://assets/models/rocks_Icosphere_cell001.res" id="2_mndoh"]
+[ext_resource type="ArrayMesh" uid="uid://cuq7bbksmnem1" path="res://assets/models/rocks_Icosphere_cell002.res" id="3_wmtvu"]
+[ext_resource type="ArrayMesh" uid="uid://c1bicpg4krshn" path="res://assets/models/rocks_Icosphere_cell003.res" id="4_uoimh"]
+[ext_resource type="ArrayMesh" uid="uid://dbqtfyajjawfx" path="res://assets/models/rocks_Icosphere_cell004.res" id="5_1jrj3"]
+[ext_resource type="ArrayMesh" uid="uid://ferme0vkytg1" path="res://assets/models/rocks_Icosphere_cell005.res" id="6_rp6wp"]
+[ext_resource type="ArrayMesh" uid="uid://c5riy4ba4lljs" path="res://assets/models/rocks_Icosphere_cell006.res" id="7_khndc"]
+[ext_resource type="ArrayMesh" uid="uid://bbbatnbrlak46" path="res://assets/models/rocks_Icosphere_cell007.res" id="8_oi72e"]
+[ext_resource type="ArrayMesh" uid="uid://b2rw6op14edpy" path="res://assets/models/rocks_Icosphere_cell008.res" id="9_crof3"]
+[ext_resource type="ArrayMesh" uid="uid://vu0nwtfx4i6n" path="res://assets/models/rocks_Icosphere_cell009.res" id="10_bl4hr"]
+[ext_resource type="ArrayMesh" uid="uid://cfdxg58wyayud" path="res://assets/models/rocks_Icosphere_cell010.res" id="11_j0c7w"]
+[ext_resource type="ArrayMesh" uid="uid://f5508hit3wvs" path="res://assets/models/rocks_Icosphere_cell011.res" id="12_txyaa"]
+[ext_resource type="ArrayMesh" uid="uid://b0gaag5t0yhiv" path="res://assets/models/rocks_Icosphere_cell012.res" id="13_jkb36"]
+[ext_resource type="ArrayMesh" uid="uid://dgh8swq3y3t06" path="res://assets/models/rocks_Icosphere_cell683.res" id="14_gnwf6"]
+[ext_resource type="ArrayMesh" uid="uid://cqf44ep1evb8e" path="res://assets/models/rocks_Icosphere_cell013.res" id="14_rdu7x"]
+
+[node name="Meteor" type="RigidBody3D"]
+mass = 25.0
+contact_monitor = true
+linear_damp = 0.05
+script = ExtResource("1_dy8br")
+meshes = Array[ArrayMesh]([ExtResource("2_mndoh"), ExtResource("3_wmtvu"), ExtResource("4_uoimh"), ExtResource("5_1jrj3"), ExtResource("6_rp6wp"), ExtResource("7_khndc"), ExtResource("8_oi72e"), ExtResource("9_crof3"), ExtResource("10_bl4hr"), ExtResource("11_j0c7w"), ExtResource("12_txyaa"), ExtResource("13_jkb36"), ExtResource("14_rdu7x"), ExtResource("14_gnwf6")])
+
+[node name="MeteorCollider" type="CollisionShape3D" parent="."]
+
+[node name="MeteorMesh" type="MeshInstance3D" parent="MeteorCollider"]
+mesh = ExtResource("2_mndoh")
+skeleton = NodePath("")
+
+[node name="ResourcePreloader" type="ResourcePreloader" parent="."]

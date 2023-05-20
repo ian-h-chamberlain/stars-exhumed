@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://clkgmgaucwtko"]
+[gd_scene load_steps=13 format=3 uid="uid://clkgmgaucwtko"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dj3v8o487ruhf" path="res://scenes/projectile/projectile.tscn" id="8_ihird"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="9_karqw"]
 [ext_resource type="Script" path="res://scenes/ui/battlefield_constellation_ui.gd" id="10_pw2uj"]
+[ext_resource type="PackedScene" uid="uid://cfum1if5xbiww" path="res://scenes/meteor/meteor.tscn" id="11_1f1eb"]
 
 [sub_resource type="Resource" id="Resource_li51c"]
 script = ExtResource("7_g2rbh")
@@ -64,6 +65,9 @@ script = ExtResource("10_pw2uj")
 
 [node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+
+[node name="Meteor" parent="." instance=ExtResource("11_1f1eb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.2065, 0)
 
 [connection signal="spell_casted" from="Spellcaster" to="BattlefieldPlayer" method="_on_spellcaster_spell_casted"]
 

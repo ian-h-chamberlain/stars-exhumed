@@ -27,6 +27,10 @@ window/size/viewport_height=768
 
 enabled=PackedStringArray("res://addons/goutte.camera.trackball/plugin.cfg", "res://addons/character-controller/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg", "res://addons/draw3d/plugin.cfg")
 
+[filesystem]
+
+import/fbx/enabled=false
+
 [gui]
 
 timers/tooltip_delay_sec=0.0
