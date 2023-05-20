@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://datqocmtbir74"]
 
-[ext_resource type="PackedScene" uid="uid://cfum1if5xbiww" path="res://scenes/meteor/meteor.tscn" id="1_oh8u1"]
+[ext_resource type="PackedScene" uid="uid://qweofwdhbi2r" path="res://scenes/meteor_spawner/meteor_spawner.tscn" id="1_7walq"]
 
 [sub_resource type="GDScript" id="GDScript_aqgcv"]
 script/source = "extends Camera3D
@@ -22,9 +22,9 @@ func _process(delta):
 [node name="Root" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(0.998117, 0.0196903, 0.0580913, -0.0527561, 0.75872, 0.649278, -0.0312906, -0.65112, 0.75833, 0.947678, 12.7127, 19.5463)
+transform = Transform3D(0.998117, 0.0421702, 0.0445419, -0.0527561, 0.960658, 0.272679, -0.0312906, -0.274516, 0.961073, 13.4038, 20.0423, 404.518)
 script = SubResource("GDScript_aqgcv")
-target = NodePath("")
+target = NodePath("../MeteorSpawner")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0, 0, 0)
@@ -34,4 +34,5 @@ transform = Transform3D(1, 0, 0, 0, 0.398909, 0.91699, 0, -0.91699, 0.398909, 0,
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape3D_damvn")
 
-[node name="Meteor" parent="." instance=ExtResource("1_oh8u1")]
+[node name="MeteorSpawner" parent="." instance=ExtResource("1_7walq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 164.212, 0)

@@ -28,6 +28,7 @@ light_indirect_energy = 7.079
 
 [node name="BattlefieldPlayer" parent="." node_paths=PackedStringArray("spellcaster") instance=ExtResource("3_gcjw7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+collision_mask = 2
 spellcaster = NodePath("../Spellcaster")
 projectile = ExtResource("8_ihird")
 
@@ -40,8 +41,8 @@ centered = true
 _terrain_data = ExtResource("6_nw61g")
 chunk_size = 32
 collision_enabled = true
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 5
 shader_type = "Classic4Lite"
 custom_shader = null
 custom_globalmap_shader = null
@@ -67,7 +68,7 @@ script = ExtResource("10_pw2uj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 
 [node name="MeteorSpawner" parent="." instance=ExtResource("11_dtbgf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 250, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 244.6, 0)
 
 [connection signal="spell_casted" from="Spellcaster" to="BattlefieldPlayer" method="_on_spellcaster_spell_casted"]
 

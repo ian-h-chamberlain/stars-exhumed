@@ -4,7 +4,7 @@ extends Node3D
 @export var meteor: PackedScene
 @export var spawn_radius: float = 200.0
 @export var target_radius: float = 50.0
-@export var meteor_speed: float = 100.0
+@export var meteor_speed: float = 150.0
 
 @onready var _timer := $Timer as Timer
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cfum1if5xbiww"]
+[gd_scene load_steps=23 format=3 uid="uid://cfum1if5xbiww"]
 
 [ext_resource type="Script" path="res://scenes/meteor/meteor.gd" id="1_dy8br"]
 [ext_resource type="Material" uid="uid://dl7picc0rbl8c" path="res://assets/textures/meteor/Rock.tres" id="2_743fu"]
@@ -15,6 +15,7 @@
 [ext_resource type="ArrayMesh" uid="uid://djaymgnudy6uk" path="res://assets/models/rocks_Icosphere_cell683.res" id="14_gnwf6"]
 [ext_resource type="ArrayMesh" uid="uid://b0gaag5t0yhiv" path="res://assets/models/rocks_Icosphere_cell013.res" id="14_rdu7x"]
 [ext_resource type="Material" uid="uid://3odbiefk5x6s" path="res://scenes/meteor/trail_material.tres" id="15_ko0nh"]
+[ext_resource type="AudioStream" uid="uid://buvcj26i0ukrf" path="res://assets/sounds/Magic_Explosion_Short19.wav" id="16_4vl8w"]
 
 [sub_resource type="Curve" id="Curve_hyd20"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0212121, 0.772727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -81,10 +82,11 @@ script = ExtResource("1_dy8br")
 meshes = Array[ArrayMesh]([ExtResource("2_mndoh"), ExtResource("3_wmtvu"), ExtResource("4_uoimh"), ExtResource("5_1jrj3"), ExtResource("6_rp6wp"), ExtResource("7_khndc"), ExtResource("9_crof3"), ExtResource("10_bl4hr"), ExtResource("11_j0c7w"), ExtResource("13_jkb36"), ExtResource("14_rdu7x"), ExtResource("14_gnwf6")])
 
 [node name="MeteorTrail" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.45654)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 amount = 200
 randomness = 1.0
-visibility_aabb = AABB(-10, -10, -10, 20, 20, 100)
+visibility_aabb = AABB(-10, -10, -15, 20, 20, 100)
+local_coords = true
 draw_order = 3
 trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_3px0j")
@@ -93,6 +95,13 @@ draw_pass_1 = SubResource("QuadMesh_ud4m2")
 [node name="ResourcePreloader" type="ResourcePreloader" parent="."]
 
 [node name="MeteorBody" type="RigidBody3D" parent="."]
+collision_layer = 4
+collision_mask = 6
+mass = 20.0
+center_of_mass_mode = 1
+max_contacts_reported = 1
+contact_monitor = true
+lock_rotation = true
 
 [node name="MeteorCollider" type="CollisionShape3D" parent="MeteorBody"]
 
@@ -100,6 +109,10 @@ draw_pass_1 = SubResource("QuadMesh_ud4m2")
 mesh = SubResource("ArrayMesh_b516s")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="MeteorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 remote_path = NodePath("../../MeteorTrail")
 update_rotation = false
 update_scale = false
+
+[node name="ExplosionAudio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("16_4vl8w")

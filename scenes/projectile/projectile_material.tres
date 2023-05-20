@@ -15,9 +15,9 @@ noise = SubResource("FastNoiseLite_w3o2f")
 [resource]
 transparency = 1
 cull_mode = 1
-albedo_color = Color(1, 0.34902, 0, 0.470588)
+albedo_color = Color(0, 0.588235, 0.964706, 0.729412)
 albedo_texture = SubResource("NoiseTexture2D_fj3fh")
 emission_enabled = true
-emission = Color(1, 0.192157, 0.152941, 1)
+emission = Color(0, 0.219608, 0.780392, 1)
 emission_energy_multiplier = 1.25
 normal_texture = SubResource("NoiseTexture2D_1fqpe")
