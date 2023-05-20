@@ -15,6 +15,7 @@ script = ExtResource("1_r5ck1")
 [node name="OrbitCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71609, 2.24646, 5.3364)
 script = ExtResource("2_keeoy")
+stabilize_horizon = true
 
 [node name="OrbitController" parent="." instance=ExtResource("3_bkywg")]
 motion_mode = 1
@@ -26,7 +27,6 @@ input_right_action_name = "move_right"
 input_up_action_name = "move_up"
 input_down_action_name = "move_down"
 gravity_multiplier = 0.0
-speed = 3
 abilities_path = Array[NodePath]([NodePath("Fly Ability 3D")])
 
 [node name="Collision" parent="OrbitController" index="0"]

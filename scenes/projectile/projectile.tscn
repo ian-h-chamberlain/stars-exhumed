@@ -23,6 +23,7 @@ collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_mbpw8")
 travel_speed = 150.0
+despawn_radius = 500.0
 explosion = ExtResource("2_dydmr")
 
 [node name="AuraMesh" type="MeshInstance3D" parent="."]

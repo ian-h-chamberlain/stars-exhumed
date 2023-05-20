@@ -5,7 +5,6 @@ signal destroyed(other: Node3D)
 
 @export var meshes: Array[ArrayMesh]
 @export var angular_speed: float = 5.0
-@export var friction_force: float = 0.6
 @export var explosion: PackedScene
 
 var _mesh_rotation_dir: Vector3
@@ -20,6 +19,8 @@ var _mesh_idx: int
 
 func _ready():
 	_mesh_idx = randi_range(0, len(meshes) - 1)
+
+	$Timer.timeout.connect(func(): $MeteorTrail.emitting = true)
 
 	# pick a random mesh at spawn time
 	_mesh.mesh = meshes[_mesh_idx]
@@ -39,9 +40,6 @@ func _physics_process(delta):
 
 
 func _process(_delta):
-	if body.constant_force == Vector3.ZERO and body.linear_velocity != Vector3.ZERO:
-		body.add_constant_force(-body.linear_velocity.normalized() * friction_force)
-
 	if not _collider.shape:
 		if _mesh.get_child_count() == 0:
 			_mesh.create_convex_collision()
@@ -60,6 +58,8 @@ func _shape_name() -> String:
 
 func _on_collision(collided_body: Node3D):
 	if not collided_body.owner is Meteor and not collided_body.owner is BattlefieldPlayer:
+		get_parent().meteor_destroyed.emit()
+
 		print("spawning explosion at ", position)
 		var expl := explosion.instantiate()
 		get_parent().add_child(expl)

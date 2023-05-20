@@ -18,7 +18,7 @@
 [ext_resource type="Material" uid="uid://3odbiefk5x6s" path="res://scenes/meteor/trail_material.tres" id="15_ko0nh"]
 
 [sub_resource type="Curve" id="Curve_hyd20"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0212121, 0.772727), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0393939, 0.9), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_wwtrx"]
@@ -36,8 +36,8 @@ angular_velocity_min = 35.0
 angular_velocity_max = 40.0
 linear_accel_max = 4.0
 angle_max = 360.0
-scale_min = 0.5
-scale_max = 0.5
+scale_min = 0.4
+scale_max = 0.4
 scale_curve = SubResource("CurveTexture_wwtrx")
 color = Color(1, 0.701961, 0.541176, 1)
 
@@ -80,11 +80,10 @@ shadow_mesh = SubResource("ArrayMesh_cv3e8")
 [node name="Meteor" type="Node3D"]
 script = ExtResource("1_dy8br")
 meshes = Array[ArrayMesh]([ExtResource("2_mndoh"), ExtResource("3_wmtvu"), ExtResource("4_uoimh"), ExtResource("5_1jrj3"), ExtResource("6_rp6wp"), ExtResource("7_khndc"), ExtResource("9_crof3"), ExtResource("10_bl4hr"), ExtResource("11_j0c7w"), ExtResource("13_jkb36"), ExtResource("14_rdu7x"), ExtResource("14_gnwf6")])
-friction_force = 0.8
 explosion = ExtResource("14_3kwrq")
 
 [node name="MeteorTrail" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 amount = 200
 randomness = 1.0
 visibility_aabb = AABB(-10, -10, -15, 20, 20, 100)
@@ -104,6 +103,7 @@ center_of_mass_mode = 1
 max_contacts_reported = 1
 contact_monitor = true
 lock_rotation = true
+linear_damp = 0.4
 
 [node name="MeteorCollider" type="CollisionShape3D" parent="MeteorBody"]
 
@@ -111,7 +111,12 @@ lock_rotation = true
 mesh = SubResource("ArrayMesh_b516s")
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="MeteorBody"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
 remote_path = NodePath("../../MeteorTrail")
 update_rotation = false
 update_scale = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true

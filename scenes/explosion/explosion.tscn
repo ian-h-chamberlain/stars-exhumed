@@ -39,3 +39,8 @@ draw_pass_1 = SubResource("QuadMesh_c12x4")
 [node name="ExplosionAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_3w578")
 autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true

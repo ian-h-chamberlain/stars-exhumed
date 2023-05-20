@@ -39,7 +39,7 @@ func _physics_process(delta):
 
 
 func _process(_delta):
-	if global_position.length() > despawn_radius:
+	if (global_position - get_parent().global_position).length() > despawn_radius:
 		# print("despawning ", get_instance_id(), " due to distance from origin")
 		queue_free()
 

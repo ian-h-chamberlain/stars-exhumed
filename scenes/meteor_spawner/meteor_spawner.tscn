@@ -6,7 +6,7 @@
 [node name="MeteorSpawner" type="Node3D"]
 script = ExtResource("1_3icam")
 meteor = ExtResource("2_yf2rf")
-spawn_radius = 150.0
+spawn_radius = 75.0
 target_radius = 20.0
 meteor_speed = 25.0
 

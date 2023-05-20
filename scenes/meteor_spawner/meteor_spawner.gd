@@ -1,6 +1,8 @@
 class_name MeteorSpawner
 extends Node3D
 
+signal meteor_destroyed
+
 @export var meteor: PackedScene
 @export var spawn_radius: float = 200.0
 @export var target_radius: float = 50.0
@@ -9,15 +11,20 @@ extends Node3D
 
 @onready var _timer := $Timer as Timer
 
+var _meteor_count: int = 0
+
 
 func _ready():
 	_timer.timeout.connect(_spawn_meteor)
 
+	meteor_destroyed.connect(func(): _meteor_count -= 1)
+
 
 func _spawn_meteor():
-	if get_child_count() - 1 >= max_meteors:
+	if _meteor_count >= max_meteors:
 		return
 
+	_meteor_count += 1
 	var new_meteor := meteor.instantiate()
 	add_child(new_meteor)
 

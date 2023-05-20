@@ -71,8 +71,8 @@ func _handle_fps_input(delta: float) -> void:
 		Input.warp_mouse(mouse_pos)
 
 	if Input.is_action_just_pressed(input_fire_action_name):
-		# FIXME if spellcaster.spell:
-		spellcaster.spell_casted.emit()
+		if spellcaster.spell or OS.is_debug_build():
+			spellcaster.spell_casted.emit()
 
 
 func _input(event: InputEvent) -> void:
