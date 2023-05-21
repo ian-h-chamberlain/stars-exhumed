@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e251ad0he7e2"
-path.bptc="res://.godot/imported/panorama_8192x4096.png-7efee19ab0adf9a0437a659a46ebcd7a.bptc.ctex"
+uid="uid://clf3iyi122u7o"
+path.s3tc="res://.godot/imported/panorama_8192x4096.png-7efee19ab0adf9a0437a659a46ebcd7a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,12 +12,12 @@ metadata={
 [deps]
 
 source_file="res://assets/textures/skybox/panorama_8192x4096.png"
-dest_files=["res://.godot/imported/panorama_8192x4096.png-7efee19ab0adf9a0437a659a46ebcd7a.bptc.ctex"]
+dest_files=["res://.godot/imported/panorama_8192x4096.png-7efee19ab0adf9a0437a659a46ebcd7a.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
@@ -26,7 +26,7 @@ mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
 process/hdr_as_srgb=false

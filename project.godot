@@ -23,6 +23,8 @@ PlayerProgress="*res://scenes/global/player_progress.gd"
 
 window/size/viewport_width=1366
 window/size/viewport_height=768
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
