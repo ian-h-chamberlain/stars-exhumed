@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://behophn0bkoa4"
-path.s3tc="res://.godot/imported/rocks_rock_texture.png-e051d84c7d98471d8c24e9efa8a2208f.s3tc.ctex"
+path.s3tc="res://.godot/imported/rocks_rock_texture.png-bf07d19bca38009dc8b36b85faba6a39.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://assets/textures/meteor/rocks_rock_texture.png"
-dest_files=["res://.godot/imported/rocks_rock_texture.png-e051d84c7d98471d8c24e9efa8a2208f.s3tc.ctex"]
+source_file="res://assets/models/rocks_rock_texture.png"
+dest_files=["res://.godot/imported/rocks_rock_texture.png-bf07d19bca38009dc8b36b85faba6a39.s3tc.ctex"]
 
 [params]
 
