@@ -92,7 +92,7 @@ color = Color(0.941176, 0, 0.282353, 0.705882)
 point_count = 10
 
 [node name="SpellcastAudioPlayer" type="AudioStreamPlayer3D" parent="."]
-volume_db = -9.0
+volume_db = -15.0
 script = ExtResource("6_c8b0y")
 prime_sound = ExtResource("7_qvdyj")
 cast_sound = ExtResource("8_aa5xf")
