@@ -1,15 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://orat75aimtsa"]
+[gd_scene load_steps=9 format=3 uid="uid://orat75aimtsa"]
 
 [ext_resource type="PackedScene" uid="uid://beqqvynfgur8j" path="res://scenes/orbit/orbiter.tscn" id="1_4sixa"]
 [ext_resource type="Script" path="res://levels/starfield.gd" id="1_602wj"]
-[ext_resource type="Environment" uid="uid://d5sp85gjce6x" path="res://scenes/starfield.tres" id="3_pmv8x"]
 [ext_resource type="PackedScene" uid="uid://dmvoghci4lp1i" path="res://scenes/starfield_generator/starfield_generator.tscn" id="4_0h61j"]
 [ext_resource type="PackedScene" uid="uid://dnw664fc18b73" path="res://scenes/constellation/constellation.tscn" id="5_8e6lk"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="6_ajb4q"]
 [ext_resource type="PackedScene" uid="uid://b36s2kj52ohlt" path="res://levels/battlefield.tscn" id="7_4k775"]
 [ext_resource type="AudioStream" uid="uid://cpvbgwue414ko" path="res://assets/music/AcrossTheSand.mp3" id="8_yk5r6"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_vpoum"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_prgf3"]
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
@@ -17,13 +16,8 @@ script = ExtResource("1_602wj")
 [node name="OrbitController" parent="." instance=ExtResource("1_4sixa")]
 max_radius = 300.0
 
-[node name="OrbitCamera" parent="OrbitController" index="0"]
-environment = ExtResource("3_pmv8x")
-current = true
-far = 1500.0
-
-[node name="OrbitController" parent="OrbitController" index="1"]
-speed = 50
+[node name="OrbitController" parent="OrbitController" index="0"]
+speed = 100
 acceleration = 15
 
 [node name="StarfieldGenerator" parent="." instance=ExtResource("4_0h61j")]
@@ -35,7 +29,7 @@ num_stars = 200
 starfield = NodePath("../StarfieldGenerator")
 
 [node name="Draw3D" parent="ConstellationBuilder/DrawConstellation3D" index="0"]
-mesh = SubResource("ImmediateMesh_vpoum")
+mesh = SubResource("ImmediateMesh_prgf3")
 
 [node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport", "starfield_gen") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")
@@ -59,6 +53,7 @@ theme_override_constants/margin_bottom = 20
 [node name="ContinueButton" type="Button" parent="ConstellationUI/MarginContainer"]
 layout_mode = 2
 tooltip_text = "Discover some spells first!"
+mouse_default_cursor_shape = 2
 disabled = true
 text = "Save the world!"
 
@@ -100,6 +95,7 @@ autowrap_mode = 2
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+mouse_default_cursor_shape = 2
 text = "OK"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cpk3ad6xh3n2" path="res://assets/sounds/wah_short_C_001.wav" id="5_d1u2s"]
 [ext_resource type="Script" path="res://addons/draw3d/draw_3d.gd" id="5_x1iqo"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_qw00i"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_67hus"]
 
 [node name="ConstellationBuilder" type="Node3D"]
 script = ExtResource("1_7lhvo")
@@ -23,7 +23,7 @@ script = ExtResource("2_40a3a")
 builder = NodePath("..")
 
 [node name="Draw3D" type="MeshInstance3D" parent="DrawConstellation3D"]
-mesh = SubResource("ImmediateMesh_qw00i")
+mesh = SubResource("ImmediateMesh_67hus")
 skeleton = NodePath("../..")
 script = ExtResource("5_x1iqo")
 

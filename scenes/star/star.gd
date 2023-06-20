@@ -63,12 +63,12 @@ func _on_StaticBody_input_event(
 
 
 func _on_StaticBody_mouse_entered():
+	Input.set_default_cursor_shape(Input.CursorShape.CURSOR_POINTING_HAND)
 	if $Highlight.state == Highlight.State.OFF:
-		#print("star ", get_instance_id(), " hovered")
 		$Highlight.state = Highlight.State.HOVERED
 
 
 func _on_StaticBody_mouse_exited():
+	Input.set_default_cursor_shape()
 	if $Highlight.state == Highlight.State.HOVERED:
-		#print("star ", get_instance_id(), " un-hovered")
 		$Highlight.state = Highlight.State.OFF

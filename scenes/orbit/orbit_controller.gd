@@ -27,3 +27,18 @@ func _physics_process(delta):
 	var input_down = Input.is_action_pressed(input_down_action_name)
 
 	move(delta, input_axis, false, false, false, input_down, input_up)
+
+
+
+var _mouse_pressed := false
+
+func input(event: InputEvent):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			_mouse_pressed = event.pressed
+			if not _mouse_pressed:
+				Input.set_default_cursor_shape()
+
+	if event is InputEventMouseMotion:
+		if _mouse_pressed:
+			Input.set_default_cursor_shape(Input.CURSOR_DRAG)

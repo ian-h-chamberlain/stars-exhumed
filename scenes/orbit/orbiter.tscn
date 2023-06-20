@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://beqqvynfgur8j"]
+[gd_scene load_steps=7 format=3 uid="uid://beqqvynfgur8j"]
 
 [ext_resource type="Script" path="res://scenes/orbit/orbiter.gd" id="1_r5ck1"]
 [ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_keeoy"]
 [ext_resource type="PackedScene" uid="uid://ciu2qgckgu5sr" path="res://addons/character-controller/core/controller.tscn" id="3_bkywg"]
 [ext_resource type="Script" path="res://scenes/orbit/orbit_controller.gd" id="4_7k74i"]
+[ext_resource type="Environment" uid="uid://d5sp85gjce6x" path="res://scenes/starfield.tres" id="4_hx6nr"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3h7pt"]
 radius = 0.25
@@ -11,11 +12,6 @@ height = 0.5
 
 [node name="Orbiter" type="Node3D"]
 script = ExtResource("1_r5ck1")
-
-[node name="OrbitCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71609, 2.24646, 5.3364)
-script = ExtResource("2_keeoy")
-stabilize_horizon = true
 
 [node name="OrbitController" parent="." instance=ExtResource("3_bkywg")]
 motion_mode = 1
@@ -34,5 +30,29 @@ shape = SubResource("CapsuleShape3D_3h7pt")
 
 [node name="Fly Ability 3D" parent="OrbitController" index="6"]
 _active = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="OrbitController"]
+remote_path = NodePath("../../CamParent")
+update_rotation = false
+update_scale = false
+
+[node name="CamParent" type="Node3D" parent="."]
+
+[node name="OrbitCamera" type="Camera3D" parent="CamParent"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
+environment = ExtResource("4_hx6nr")
+far = 2000.0
+script = ExtResource("2_keeoy")
+zoom_strength = 10.0
+zoom_minimum = 100.0
+zoom_maximum = 300.0
+zoom_inertia_threshold = 0.01
+zoom_in_dampening = 25.0
+
+[node name="ControllerRotation" type="RemoteTransform3D" parent="CamParent/OrbitCamera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+remote_path = NodePath("../../../OrbitController")
+update_position = false
+update_scale = false
 
 [editable path="OrbitController"]
