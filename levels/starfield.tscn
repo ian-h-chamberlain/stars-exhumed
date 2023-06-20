@@ -8,17 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://b36s2kj52ohlt" path="res://levels/battlefield.tscn" id="7_4k775"]
 [ext_resource type="AudioStream" uid="uid://cpvbgwue414ko" path="res://assets/music/AcrossTheSand.mp3" id="8_yk5r6"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_prgf3"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_w8d7i"]
 
 [node name="Starfield" type="Node3D"]
 script = ExtResource("1_602wj")
 
 [node name="OrbitController" parent="." instance=ExtResource("1_4sixa")]
-max_radius = 300.0
+max_radius = 200.0
 
 [node name="OrbitController" parent="OrbitController" index="0"]
 speed = 100
 acceleration = 15
+
+[node name="OrbitCamera" parent="OrbitController/CamParent" index="0"]
+zoom_strength = 30.0
+zoom_minimum = 175.0
 
 [node name="StarfieldGenerator" parent="." instance=ExtResource("4_0h61j")]
 max_radius = 750.0
@@ -29,7 +33,7 @@ num_stars = 200
 starfield = NodePath("../StarfieldGenerator")
 
 [node name="Draw3D" parent="ConstellationBuilder/DrawConstellation3D" index="0"]
-mesh = SubResource("ImmediateMesh_prgf3")
+mesh = SubResource("ImmediateMesh_w8d7i")
 
 [node name="ConstellationUI" parent="." node_paths=PackedStringArray("constellation_builder", "constellation_viewport", "starfield_gen") instance=ExtResource("6_ajb4q")]
 constellation_builder = NodePath("../ConstellationBuilder")

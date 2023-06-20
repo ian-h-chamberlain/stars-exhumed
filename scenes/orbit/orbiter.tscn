@@ -43,11 +43,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 200)
 environment = ExtResource("4_hx6nr")
 far = 2000.0
 script = ExtResource("2_keeoy")
-zoom_strength = 10.0
-zoom_minimum = 100.0
-zoom_maximum = 300.0
+zoom_strength = 20.0
+zoom_minimum = 150.0
+zoom_maximum = 500.0
 zoom_inertia_threshold = 0.01
-zoom_in_dampening = 25.0
 
 [node name="ControllerRotation" type="RemoteTransform3D" parent="CamParent/OrbitCamera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)

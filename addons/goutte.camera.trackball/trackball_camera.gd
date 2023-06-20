@@ -365,7 +365,7 @@ func process_zoom_inertia(delta: float):
 				_zoomInertia *= float(max(0, 1 - (1.333 * (zoom_minimum - cpl) / zoom_minimum)))
 			_zoomInertia = _zoomInertia - 0.1 * (zoom_minimum - cpl) / zoom_minimum
 		if cpl > zoom_maximum:
-			_zoomInertia += 0.09 * exp((cpl - zoom_maximum) * 3 + 1) * (cpl - zoom_maximum) * (cpl - zoom_maximum)
+			_zoomInertia += 0.09 * exp((cpl - zoom_maximum) / zoom_maximum * 3 + 1) * (cpl - zoom_maximum) * (cpl - zoom_maximum)
 		apply_zoom(_zoomInertia)
 		apply_zoom_friction()
 	else:
