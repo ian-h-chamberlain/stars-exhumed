@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b36s2kj52ohlt"]
+[gd_scene load_steps=14 format=3 uid="uid://b36s2kj52ohlt"]
 
 [ext_resource type="Script" path="res://levels/battlefield.gd" id="1_twrda"]
 [ext_resource type="PackedScene" uid="uid://cbkh36rk3na08" path="res://scenes/battlefield_player/battlefield_player.tscn" id="3_gcjw7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dj3v8o487ruhf" path="res://scenes/projectile/projectile.tscn" id="8_ihird"]
 [ext_resource type="PackedScene" uid="uid://bbvifgv0cun4n" path="res://scenes/ui/constellation_ui.tscn" id="9_karqw"]
 [ext_resource type="Script" path="res://scenes/ui/battlefield_constellation_ui.gd" id="10_pw2uj"]
+[ext_resource type="Script" path="res://levels/battlefield_help.gd" id="11_dh24s"]
 [ext_resource type="PackedScene" uid="uid://qweofwdhbi2r" path="res://scenes/meteor_spawner/meteor_spawner.tscn" id="11_dtbgf"]
 
 [sub_resource type="Resource" id="Resource_li51c"]
@@ -81,6 +82,7 @@ theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("11_dh24s")
 
 [node name="PanelContainer" type="PanelContainer" parent="Spellcaster/HelpPanel"]
 layout_mode = 2
