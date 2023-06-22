@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b7etuyx21kp4h"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b7etuyx21kp4h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2035"]
 bg_color = Color(0.469774, 0.591738, 0.878543, 0.615686)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0xhw"]
 
 [resource]
 MarginContainer/constants/margin_bottom = 5
@@ -10,3 +12,4 @@ MarginContainer/constants/margin_right = 5
 MarginContainer/constants/margin_top = 5
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_s2035")
 VBoxContainer/constants/separation = 5
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_h0xhw")

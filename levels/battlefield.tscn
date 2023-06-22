@@ -63,7 +63,7 @@ script = ExtResource("10_pw2uj")
 
 [node name="Spellcaster" parent="." instance=ExtResource("6_jiwv4")]
 
-[node name="SpellcastAudioPlayer" parent="Spellcaster" index="2"]
+[node name="SpellcastAudioPlayer" parent="Spellcaster" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
 
 [node name="HelpPanel" type="MarginContainer" parent="Spellcaster"]

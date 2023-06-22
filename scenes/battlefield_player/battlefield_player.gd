@@ -33,10 +33,6 @@ func _physics_process(delta):
 		## to process, as we still need to calculate gravity and collisions.
 		move(delta)
 
-		if Input.is_action_just_pressed(input_cancel_action_name):
-			_capture_mouse()
-			spellcaster.spell_cancelled.emit()
-
 
 func _capture_mouse():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -60,25 +56,35 @@ func _handle_fps_input(delta: float) -> void:
 		input_sprint,
 	)
 
-	if Input.is_action_just_pressed(input_cast_action_name) and not spellcaster.spell:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-		var spell_circle := spellcaster.find_child("SpellCircle") as Control
-		var mouse_pos: Vector2 = (
-			spell_circle.global_position
-			+ Vector2(spell_circle.size.x / 2.0, spell_circle.size.y / 2.0)
-		)
-		Input.warp_mouse(mouse_pos)
-
-	if Input.is_action_just_pressed(input_fire_action_name):
-		if spellcaster.spell or OS.is_debug_build():
-			spellcaster.spell_casted.emit()
-
-
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	# Mouse look (only if the mouse is captured).
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_head(event.relative)
+		return
+
+	if event.is_action_pressed(input_cancel_action_name):
+		_capture_mouse()
+		spellcaster.spell_cancelled.emit()
+		return
+
+	if event.is_action_pressed(input_cast_action_name) and not spellcaster.spell:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		return
+
+		# Unfortunately warp_mouse has no effect on web builds, so to make it
+		# a consistent experience it seems best to avoid warping at all...
+
+		#var spell_circle := spellcaster.find_child("SpellCircle") as Control
+		#var mouse_pos: Vector2 = (
+		#	spell_circle.global_position
+		#	+ Vector2(spell_circle.size.x / 2.0, spell_circle.size.y / 2.0)
+		#)
+		#Input.warp_mouse(mouse_pos)
+
+	if event.is_action_pressed(input_fire_action_name):
+		if spellcaster.spell or OS.is_debug_build():
+			spellcaster.spell_casted.emit()
 
 
 func _on_spellcaster_spell_casted():

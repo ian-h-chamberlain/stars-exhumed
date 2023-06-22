@@ -53,6 +53,7 @@ func _process(_delta):
 func _on_StaticBody_input_event(
 	_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int
 ) -> void:
+	# TODO controls to match battlefield spellcaster
 	if event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:

@@ -28,52 +28,6 @@ mouse_filter = 1
 theme = ExtResource("1_hqqcb")
 script = ExtResource("2_wur2m")
 
-[node name="SpellCircle" type="TextureRect" parent="."]
-material = SubResource("ShaderMaterial_jp8xn")
-custom_minimum_size = Vector2(250, 250)
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -125.0
-offset_top = -250.0
-offset_right = 125.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-texture = ExtResource("2_0u22t")
-expand_mode = 1
-stretch_mode = 4
-script = ExtResource("4_7ey0p")
-star_radius = 5.0
-star_color = Color(0.756863, 0.980392, 0.945098, 1)
-line_color = Color(0.941176, 0.941176, 0.701961, 1)
-line_width = 1.5
-
-[node name="MarginContainer" type="MarginContainer" parent="SpellCircle"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 35
-theme_override_constants/margin_right = 35
-theme_override_constants/margin_bottom = 35
-
-[node name="CurrentSpell" type="TextureRect" parent="SpellCircle/MarginContainer"]
-visible = false
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 6
-
-[node name="Timer" type="Timer" parent="SpellCircle"]
-wait_time = 0.5
-one_shot = true
-
 [node name="Reticle" type="Control" parent="."]
 visible = false
 layout_mode = 1
@@ -99,3 +53,72 @@ cast_sound = ExtResource("8_aa5xf")
 fail_sound = ExtResource("10_jjcxp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="SpellCircleContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -250.0
+offset_right = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Helpers" type="HBoxContainer" parent="SpellCircleContainer"]
+layout_mode = 2
+
+[node name="CastButton" type="Button" parent="SpellCircleContainer/Helpers"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_hqqcb")
+text = "Cast (E/RMB)"
+
+[node name="VSeparator" type="VSeparator" parent="SpellCircleContainer/Helpers"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_hqqcb")
+
+[node name="CancelButton" type="Button" parent="SpellCircleContainer/Helpers"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_hqqcb")
+text = "Cancel (Q)"
+
+[node name="SpellCircle" type="TextureRect" parent="SpellCircleContainer"]
+material = SubResource("ShaderMaterial_jp8xn")
+custom_minimum_size = Vector2(250, 250)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("2_0u22t")
+expand_mode = 1
+stretch_mode = 4
+script = ExtResource("4_7ey0p")
+star_radius = 5.0
+star_color = Color(0.756863, 0.980392, 0.945098, 1)
+line_color = Color(0.941176, 0.941176, 0.701961, 1)
+line_width = 1.5
+
+[node name="MarginContainer" type="MarginContainer" parent="SpellCircleContainer/SpellCircle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="CurrentSpell" type="TextureRect" parent="SpellCircleContainer/SpellCircle/MarginContainer"]
+visible = false
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Timer" type="Timer" parent="SpellCircleContainer/SpellCircle"]
+wait_time = 0.5
+one_shot = true

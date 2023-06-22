@@ -19,11 +19,12 @@ var is_casting: bool:
 	get:
 		return not _current_constellation.is_empty()
 
-# skip the first once since it's always 0 and would bring down the avg
 var _current_constellation: Array[Vector2] = []
 var _is_primed: bool = false
+var _is_casting: bool = false
 var _shader_time: float = 0
 
+@onready var _audio_player = $"../../SpellcastAudioPlayer" as SpellcastAudioPlayer
 @onready var _current_spell = $MarginContainer/CurrentSpell as TextureRect
 @onready var _timer = $Timer as Timer
 
@@ -31,7 +32,6 @@ const GLOW_COLOR := "glow_color"
 
 
 func _ready():
-	connect("gui_input", _on_gui_input)
 	spell_casted.connect(_on_spell_casted)
 	spell_cancelled.connect(_on_spell_cancelled)
 	_timer.timeout.connect(_reset_material)
@@ -69,28 +69,40 @@ func _reset_material():
 	material.set_shader_parameter(GLOW_COLOR, Color.BLACK)
 
 
-func _on_gui_input(e: InputEvent) -> void:
-	var event := e as InputEventMouseButton
-	if not event or not event.pressed:
-		return
+# TODO: maybe shove all this input handling stuff and casting logic up to spellcaster?
 
+
+func _shortcut_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cast_spell"):
+		print("got finish_cast (shortcut)")
+		_attempt_cast()
+
+
+func _gui_input(event: InputEvent) -> void:
 	if _is_primed:
 		return
 
-	match event.button_index:
-		MOUSE_BUTTON_LEFT:
-			print("got mouse click at ", event.position)
-			_current_constellation.push_back(event.position)
-		MOUSE_BUTTON_RIGHT:
-			print("got right click at ", event.position)
-			_attempt_cast()
-		_:
-			return
+	if event.is_action_pressed("pick_star"):
+		print("got pick_star at ", event.position)
+		_is_casting = true
+		_current_constellation.push_back(event.position)
+	elif event.is_action_pressed("cast_spell"):
+		print("got finish_cast")
+		_attempt_cast()
+	else:
+		return
 
+	accept_event()
 	queue_redraw()
 
 
 func _attempt_cast():
+	if not _is_casting:
+		print("not currently casting, not attempting cast")
+		return
+
+	_is_casting = false
+
 	for cons in PlayerProgress.constellations:
 		if _matches_constellation(cons):
 			print("got a match on constellation: ", cons)
@@ -98,7 +110,7 @@ func _attempt_cast():
 			return
 
 	_on_spell_cancelled()
-	$"../SpellcastAudioPlayer".spell_failed.emit()
+	_audio_player.spell_failed.emit()
 	_shader_time = 0
 	material.set_shader_parameter(GLOW_COLOR, fail_glow)
 	_timer.start()

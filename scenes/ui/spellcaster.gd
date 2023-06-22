@@ -9,15 +9,21 @@ var spell:
 	get:
 		return spell
 
-@onready var spell_circle := $SpellCircle as SpellCircle
+@onready var spell_circle := $SpellCircleContainer/SpellCircle as SpellCircle
 @onready var reticle := $Reticle as Reticle
 @onready var _audio_player := $SpellcastAudioPlayer as SpellcastAudioPlayer
+
+@onready var _cast_button := $SpellCircleContainer/Helpers/CastButton as Button
+@onready var _cancel_button := $SpellCircleContainer/Helpers/CastButton as Button
 
 @onready var _ok_button = $HelpPanel/PanelContainer/VBoxContainer/OKButton as Button
 @onready var _help_panel = $HelpPanel as CanvasItem
 
 
 func _ready() -> void:
+	_cast_button.pressed.connect(_simulate_action.bind("cast_spell"))
+	_cancel_button.pressed.connect(_simulate_action.bind("cancel_cast"))
+
 	spell_cancelled.connect(_cancel_cast)
 	spell_casted.connect(_clear_spell)
 	spell_circle.spell_primed.connect(_set_spell)
@@ -27,6 +33,13 @@ func _ready() -> void:
 
 	if _ok_button:
 		_ok_button.pressed.connect(_hide_help)
+
+
+func _simulate_action(action_name: StringName):
+	var evt := InputEventAction.new()
+	evt.pressed = true
+	evt.action = action_name
+	Input.parse_input_event(evt)
 
 
 func _hide_help():
