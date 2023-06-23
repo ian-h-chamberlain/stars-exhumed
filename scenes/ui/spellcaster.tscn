@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2pv53nmfjq8s"]
+[gd_scene load_steps=16 format=3 uid="uid://2pv53nmfjq8s"]
 
 [ext_resource type="Theme" uid="uid://b7etuyx21kp4h" path="res://scenes/ui/base_theme.tres" id="1_hqqcb"]
 [ext_resource type="Texture2D" uid="uid://bkjora8j1n8md" path="res://assets/textures/spellcaster/parchment.png" id="2_0u22t"]
@@ -10,6 +10,18 @@
 [ext_resource type="AudioStream" uid="uid://jjc0x4l2p54g" path="res://assets/sounds/Magic_Spells_CastShort_Push14.wav" id="7_qvdyj"]
 [ext_resource type="AudioStream" uid="uid://8gjd867sxbfm" path="res://assets/sounds/Magic_Spells_Impact_Creation20.wav" id="8_aa5xf"]
 [ext_resource type="AudioStream" uid="uid://cpk3ad6xh3n2" path="res://assets/sounds/wah_short_C_001.wav" id="10_jjcxp"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_02qav"]
+action = &"prime_spell"
+
+[sub_resource type="Shortcut" id="Shortcut_jwmti"]
+events = [SubResource("InputEventAction_02qav")]
+
+[sub_resource type="InputEventAction" id="InputEventAction_2sf6y"]
+action = &"cancel_spell"
+
+[sub_resource type="Shortcut" id="Shortcut_gddyq"]
+events = [SubResource("InputEventAction_2sf6y")]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jp8xn"]
 shader = ExtResource("3_hcplh")
@@ -74,7 +86,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_hqqcb")
-text = "Cast (E/RMB)"
+shortcut = SubResource("Shortcut_jwmti")
+text = "Cast [E]"
 
 [node name="VSeparator" type="VSeparator" parent="SpellCircleContainer/Helpers"]
 layout_mode = 2
@@ -85,7 +98,8 @@ theme = ExtResource("1_hqqcb")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_hqqcb")
-text = "Cancel (Q)"
+shortcut = SubResource("Shortcut_gddyq")
+text = "Cancel [Q]"
 
 [node name="SpellCircle" type="TextureRect" parent="SpellCircleContainer"]
 material = SubResource("ShaderMaterial_jp8xn")

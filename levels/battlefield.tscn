@@ -29,6 +29,13 @@ light_indirect_energy = 7.079
 
 [node name="BattlefieldPlayer" parent="." node_paths=PackedStringArray("spellcaster") instance=ExtResource("3_gcjw7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43266, 0)
+input_back_action_name = &"move_backward"
+input_forward_action_name = &"move_forward"
+input_left_action_name = &"move_left"
+input_right_action_name = &"move_right"
+input_sprint_action_name = &"move_sprint"
+input_jump_action_name = &"move_jump"
+input_cast_action_name = &"cast_spell"
 spellcaster = NodePath("../Spellcaster")
 projectile = ExtResource("8_ihird")
 
@@ -113,8 +120,6 @@ text = "OK"
 
 [node name="MeteorSpawner" parent="." instance=ExtResource("11_dtbgf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 315.599, 0)
-
-[connection signal="spell_casted" from="Spellcaster" to="BattlefieldPlayer" method="_on_spellcaster_spell_casted"]
 
 [editable path="ConstellationUI"]
 [editable path="Spellcaster"]

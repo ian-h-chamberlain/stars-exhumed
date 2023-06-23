@@ -1,15 +1,13 @@
 class_name BattlefieldPlayer
 extends FPSController3D
 
-@export var input_back_action_name := "move_backward"
-@export var input_forward_action_name := "move_forward"
-@export var input_left_action_name := "move_left"
-@export var input_right_action_name := "move_right"
-@export var input_sprint_action_name := "move_sprint"
-@export var input_jump_action_name := "move_jump"
-@export var input_cast_action_name := "cast_spell"
-@export var input_cancel_action_name := "cancel_spell"
-@export var input_fire_action_name := "fire"
+@export var input_back_action_name := &"move_backward"
+@export var input_forward_action_name := &"move_forward"
+@export var input_left_action_name := &"move_left"
+@export var input_right_action_name := &"move_right"
+@export var input_sprint_action_name := &"move_sprint"
+@export var input_jump_action_name := &"move_jump"
+@export var input_cast_action_name := &"cast_spell"
 
 @export var spellcaster: Spellcaster
 @export var projectile: PackedScene
@@ -20,6 +18,8 @@ extends FPSController3D
 func _ready():
 	_capture_mouse()
 	spellcaster.spell_primed.connect(_capture_mouse)
+	spellcaster.spell_casted.connect(_on_spellcaster_spell_casted)
+	spellcaster.spell_cancelled.connect(_capture_mouse)
 	setup()
 
 
@@ -63,27 +63,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_head(event.relative)
 		return
 
-	if event.is_action_pressed(input_cancel_action_name):
-		_capture_mouse()
-		spellcaster.spell_cancelled.emit()
-		return
-
-	if event.is_action_pressed(input_cast_action_name) and not spellcaster.spell:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		return
-
-		# Unfortunately warp_mouse has no effect on web builds, so to make it
-		# a consistent experience it seems best to avoid warping at all...
-
-		#var spell_circle := spellcaster.find_child("SpellCircle") as Control
-		#var mouse_pos: Vector2 = (
-		#	spell_circle.global_position
-		#	+ Vector2(spell_circle.size.x / 2.0, spell_circle.size.y / 2.0)
-		#)
-		#Input.warp_mouse(mouse_pos)
-
-	if event.is_action_pressed(input_fire_action_name):
-		if spellcaster.spell or OS.is_debug_build():
+	if (
+		event.is_action_pressed(input_cast_action_name)
+		and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED
+	):
+		if spellcaster.is_spell_primed or OS.is_debug_build():
 			spellcaster.spell_casted.emit()
 
 
